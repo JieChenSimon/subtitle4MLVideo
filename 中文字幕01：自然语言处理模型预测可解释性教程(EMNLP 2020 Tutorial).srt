@@ -1,0 +1,2049 @@
+0
+00:00:00,380 --> 00:00:06,380
+欢迎来到LP模型教程的解释预测 我是来自岛屿人工智能研究所的马特·加德纳
+Welcome to the interpreting predictions for it, a LP Models tutorial. I'm Matt Gardner from the Island Institute for AI.
+
+1
+00:00:07,240 --> 00:00:15,280
+主持人是来自加州大学伯克利分校的EricWeiss和来自U-C-I的Simirsing 嗯
+And the CO presenters here are Eric Weiss from UC Berkeley and Simir sing from U-C-I. Um,
+
+2
+00:00:17,910 --> 00:00:22,350
+好了 这是被录下来的 你可以在比赛结束后再看
+There we go, so this is being recorded. You can watch it after the fact.
+
+3
+00:00:23,080 --> 00:00:28,840
+幻灯片也可以在这个网站上找到 在火箭镜头里 你可以很容易找到
+UM, slides are also available, uh, at this website, and in the rocket shot, you can find them pretty easily.
+
+4
+00:00:30,850 --> 00:00:31,890
+还有一点物流方面的知识
+A little bit on logistics.
+
+5
+00:00:32,870 --> 00:00:40,430
+幻灯片里没有的是有一个Slideo 如果你熟悉dory 它是一个dory一样的界面 你可以在那里问问题
+What's not here in the slides is that there is a Slideo, like if you're familiar with dory, it's a dory like interface, you can ask questions there.
+
+6
+00:00:41,300 --> 00:00:45,700
+还有 不说话的人会监视 然后火箭式聊天
+Um, also, the person who's not talking will be monitoring that, and rocket chat.
+
+7
+00:00:46,580 --> 00:00:50,860
+所以 如果你们有问题的话
+Um, and so, uh, if you have questions as we go.
+
+8
+00:00:51,680 --> 00:01:00,680
+去问他们吧 如果有必要萨米尔或者会打断我 或者等到这部分结束再回答问题 所以
+Go ahead and ask them, and um, either Samir or will stop me if necessary, or will wait until the end of the section to answer questions. So.
+
+9
+00:01:02,090 --> 00:01:06,170
+嗯 在这张幻灯片上花点时间 但要有一点怀疑 这就是
+Uh, take the times on this slide with a little bit of a grain of salt. This is just what's, um.
+
+10
+00:01:07,190 --> 00:01:09,070
+我们会 我们会看情况如何 但是
+We'll, we'll see how things go, but uh.
+
+11
+00:01:09,880 --> 00:01:16,800
+本教程预定四个半小时 但我们计划两个小时 然后休息三十分钟 然后再休息两个小时
+This tutorial is scheduled for four and a half hours, but we're planning on two hours and then a thirty minute break, and then another two hours.
+
+12
+00:01:18,210 --> 00:01:25,010
+在这两个小时里 我们计划了90分钟的内容和30分钟的公开问答
+Where each of those two hour blocks, we've planned on about ninety minutes of content and then thirty minutes of open Q-A.
+
+13
+00:01:25,710 --> 00:01:33,830
+在那之后 你们可以随意提问 我们可能会在每个人的部分结束时停下来回答一些问题
+In, but or after that, though, feel free to ask questions as we go, and we'll probably stop at the end of each person's section to take some questions.
+
+14
+00:01:34,830 --> 00:01:37,030
+这取决于我们在Chat和slato中看到的内容
+Just depending on what we see in Chat and slato.
+
+15
+00:01:39,330 --> 00:01:45,370
+好了 我想先讲讲为什么你们会关心可解释性
+Okay, so I want to start out giving a bit of motivation for why you might care about interpretability.
+
+16
+00:01:46,680 --> 00:01:49,040
+以及我们今天要讲的内容
+And how what we're gonna talk about today.
+
+17
+00:01:49,820 --> 00:01:57,780
+适用于所有你可能想到的关于L-P模型的可解释性的东西
+Um, fits into all of the things you might think about in terms of what interpretability is, uh, for an L-P models.
+
+18
+00:02:00,070 --> 00:02:03,750
+所以我想 每个听这个的人都知道
+So as I imagine, everyone listening to this is aware.
+
+19
+00:02:04,560 --> 00:02:12,680
+神经学 NLP已经取代了NLP 无论是在玩具研究 我们通常发表的东西 还是在实践中
+Neural, NLP has kind of taken over NLP, both in toy research, stuff that we typically publish about, and also in practical.
+
+20
+00:02:14,140 --> 00:02:14,940
+生活产品
+Live products.
+
+21
+00:02:17,040 --> 00:02:25,520
+我们都知道 它表现得非常好 但令人惊讶的是 这些模型也有一些相当严重的失败
+It performs incredibly well, uh, as, as we all know, but surprisingly, there are also some pretty significant failures of these models.
+
+22
+00:02:26,390 --> 00:02:27,270
+即使他们看起来像
+Even though they look like.
+
+23
+00:02:28,000 --> 00:02:33,520
+嗯 根据我们的研究验证指标 他们看起来表现得很好 嗯
+UM, according to to our research validation metrics, they look like they perform very well, um?
+
+24
+00:02:34,260 --> 00:02:40,180
+当你真正深入研究的时候会发现很多事情都不是很好
+There are lots of things that are not so well when you really dig into what's going on.
+
+25
+00:02:41,010 --> 00:02:46,450
+这可能是各种偏见 也可能是非常脆弱的行为
+And this can be all kinds of bias, it can be very fragile behavior and.
+
+26
+00:02:47,750 --> 00:02:55,590
+很多事情 我不会去 我也不想把任何特定的产品打包 所以 我们会继续
+A lot of things, I won't go and I don't want to bag on any particular product, so um, we'll keep going, um,
+
+27
+00:02:57,340 --> 00:03:03,940
+我想在研究界 也有很多人发表文章试图弄清楚到底发生了什么 为什么
+And I guess in the research community, also, a lot of the people have been publishing about trying to figure out what's going on. Why.
+
+28
+00:03:04,860 --> 00:03:11,700
+我们的验证指标并没有捕捉到关于这些模型的脆弱性和失败的全部情况
+Our validation metrics aren't capturing the full story about the brittleness and failures of these models.
+
+29
+00:03:12,700 --> 00:03:15,380
+这基本上就是可解释性的由来
+And that's basically where interpretability comes in.
+
+30
+00:03:16,240 --> 00:03:24,800
+关键在于 验证指标并不能告诉你我们需要做的所有事情 这就是可解释性方法
+Um, where the key point is looking at validation metrics doesn't tell you everything we need to do with something more. And this is what interpretability methods.
+
+31
+00:03:25,530 --> 00:03:29,970
+试着出去 那么除了验证度量之外 你还想要什么
+Try to get out, and so what kinds of things might you want, besides just validation metrics.
+
+32
+00:03:31,460 --> 00:03:38,300
+你可能想要找出模型中的错误或漏洞 或者其他不受欢迎的行为 我们看到
+Um, well, you might want to find errors or bugs in your model, um, or otherwise undesirable behavior. We saw.
+
+33
+00:03:39,230 --> 00:03:44,950
+我之前有一些这样的例子 这是另一个 这是伯特的例子
+Some, I had some of examples of that earlier on the side, here's another one, um, so this is an example of Bert.
+
+34
+00:03:46,120 --> 00:03:46,240
+我
+I
+
+35
+00:03:47,710 --> 00:03:52,550
+填充它 做掩码语言 建模 预测 于是空白者跑到急诊室去看他的病人
+Filling it, doing mask language, modeling, prediction. So the blank ran to the emergency room to see his patient.
+
+36
+00:03:53,190 --> 00:03:58,950
+伯特说 口罩应该是医生 有很高的可能性 或最高的可能性 然后是其他的单词
+Burt says that the mask should be doctor with high probability, or highest probability. And then these other words,
+
+37
+00:03:59,840 --> 00:04:03,440
+如果我们把他换成她 就会得到不同的分布
+If we just change his to her, we get this different distribution over.
+
+38
+00:04:04,390 --> 00:04:09,710
+现在对护士和医生的预测下降了很多
+Predictions where now nurse comes up to the top and doctor has gone down quite significantly.
+
+39
+00:04:10,950 --> 00:04:15,070
+不管你怎么看这个例子
+And um, whatever you think of this example, um,
+
+40
+00:04:16,170 --> 00:04:23,970
+在TH 从某种意义上说 这是一些不受欢迎的行为你可能至少想知道它在模型中是从哪里来的
+At TH, this is in some sense, some undesirable behavior that you might want to at least understand where it came from, in the model.
+
+41
+00:04:24,880 --> 00:04:27,680
+有一些方法可以做到这一点我们会讲到
+And there are some methods that try to do this will be talking about, some of them.
+
+42
+00:04:28,700 --> 00:04:36,620
+老实说 对于这个特定的例子 我并不完全相信这种解释方法 但这是我们可能想要尝试理解的事情
+Honestly, for this particular example, I'm not totally sold on this particular means of explaining it, but this is the kind of thing that we might want to try to understand.
+
+43
+00:04:37,540 --> 00:04:38,700
+嗯 在模型中 行为
+Um, in models, behavior.
+
+44
+00:04:40,670 --> 00:04:48,870
+另一件事是 我们可能想要在我们的数据中找到错误和bug 也就是说 我们可能会查看我们的验证指标 看到它们没有我们想要的那么高
+Another thing is we might want to find errors and bugs in our data, that is, uh, we might look at our validation metrics and see that they're not as high as we might want.
+
+45
+00:04:50,040 --> 00:04:57,200
+这告诉我们 它没有我们想要的那么好 对吧 但不一定是为什么 原因之一是
+Um, and that tells us that it doesn't work as well as we want, right, but not necessarily why. And one reason that might.
+
+46
+00:04:57,760 --> 00:05:03,520
+验证可能没有我们想的那么高 因为模型看到的输入数据有问题
+The the validations might not be as high as we like is because of uh, problems in the input data that that the model saw.
+
+47
+00:05:04,660 --> 00:05:09,220
+例如 如果我在测试时间看到模型预测这些灰熊是北极熊
+And so, for example, if I see at test time that the model predicts that these grizzly bears are polar bears.
+
+48
+00:05:09,860 --> 00:05:10,620
+我可能想知道
+I might want to know.
+
+49
+00:05:11,370 --> 00:05:19,890
+事实证明 在训练数据中 有一只灰熊被误导成了北极熊 这是在测试时间出现错误预测的一个非常强烈的原因
+That, it turns out, in the training data, there was a grizzly bear that was misled as a polar bear, and that's A-A very strong cause of this incorrect prediction at test Time.
+
+50
+00:05:21,220 --> 00:05:24,060
+这是你不能仅仅通过参数本身得到的
+This is something that you won't get just by looking at the metrics themselves.
+
+51
+00:05:26,180 --> 00:05:30,500
+我们也是NP研究者 我们设计了这些模型
+UM, we also are NP researchers, and we design these models.
+
+52
+00:05:31,550 --> 00:05:39,110
+我们可能想知道模型的哪个部分没有达到我们的要求 这样我们就知道如何修复它
+And um, we might want to know what part of the model is not doing what we want so that we know how to fix it.
+
+53
+00:05:39,570 --> 00:05:45,610
+例如 在斯坦福问答数据集的A-S-A模型中 嗯
+So for example, um, in A-S-A model for the Stanford question answering dataset. Um,
+
+54
+00:05:47,100 --> 00:05:51,980
+我们可以通过分析它的行为 找出一个特定的失效模式
+We might, by analyzing its behavior, find out that a particular failure mode.
+
+55
+00:05:52,670 --> 00:05:59,350
+那就是 它倾向于专注于输入信息中与被问问题有高度重叠的部分
+Is that, uh, it tends to fixate heavily on parts of the input that have high overlap with with the question that was asked.
+
+56
+00:06:00,290 --> 00:06:07,330
+如果我们能发现这个特殊的问题 我们 它可以给我们洞察如何在未来改进我们的模型
+And if we can discover this particular problem, we, it could give us insight into how to improve our model in the future.
+
+57
+00:06:09,900 --> 00:06:11,060
+嗯 另外
+Um, additionally,
+
+58
+00:06:12,790 --> 00:06:20,150
+理解一个模型是很重要的 不仅仅是为了改进这个模型 而是为了这个模型是否将被用于任何类型的人类人工智能合作 或类似的环境中
+Understanding a model is important, not just to improve the model, but if the model is going to be used in any kind of human AI collaboration, kind of setting.
+
+59
+00:06:21,640 --> 00:06:27,720
+我们需要知道我们是否可以信任这个模型 或者我们不应该信任这个模型 很多人都尝试过
+We need to know if we can trust the model or if we shouldn't trust the model. And a lot of people have tried to.
+
+60
+00:06:28,660 --> 00:06:35,620
+研究我们如何得到可解释的模型 某种意义上的模型 或不同程度的可解释性 为了 呃
+Study how we can get models explainable, models, in some sense, or various degrees of explainability. In order to, um.
+
+61
+00:06:37,010 --> 00:06:41,930
+让人类更好地与我们现有的机器学习模型互动
+Make it better for human, for humans to interact with the machine learning models that we have.
+
+62
+00:06:42,850 --> 00:06:42,970
+所以
+So.
+
+63
+00:06:45,140 --> 00:06:47,220
+这个可能更具有推测性
+This one is perhaps a little bit more speculative.
+
+64
+00:06:48,790 --> 00:06:56,510
+但至少有一种假设 即如果一个模型在本质上是可以理解或解释的 它就会更好地泛化
+But there there is at least a hypothesis that if a model is inherently understandable or interpretable, it will generalize better.
+
+65
+00:06:57,620 --> 00:07:02,300
+所以也许 也许 也许 我们可以这么想 就是
+And so perhaps, uh, may, maybe, a way of thinking of this, is that, um.
+
+66
+00:07:03,410 --> 00:07:12,250
+分布内验证的准确性不一定足够好 某种成分泛化的测量 或分布外泛化的测量
+An in distribution validation accuracy is not necessarily good enough, and um, some kind of measure of compositional generalization, or out of distribution generalization.
+
+67
+00:07:13,040 --> 00:07:19,600
+将是一个更好的衡量标准 也许是内在可解释的模型
+Would be a better metric to look at, and perhaps models that are inherently interpretable.
+
+68
+00:07:20,560 --> 00:07:29,520
+会有更好的泛化 这里有一些初步的证据 我在这里展示的一个模型 运行在聪明的视觉推理数据集上
+Will have better generalization, and there's some preliminary evidence with this that I'm showing here a model that operates on the the clever visual reasoning dataset.
+
+69
+00:07:30,630 --> 00:07:32,470
+人们发现
+Um, where people have found.
+
+70
+00:07:33,220 --> 00:07:41,300
+神经模块网络在某种程度上固有地编码了你想要更好地泛化出域数据的可解释推理
+That neural module networks that in some sense inherently encode the the interpretable reasoning that you would want generalize better to out of domain data.
+
+71
+00:07:42,380 --> 00:07:49,620
+我想说 毫无疑问 这里的证据仍然是初步的 但也许这是你可能想要建立模型的另一个原因
+Um, I would, I would say, definitely, the the evidence here is still preliminary, but perhaps this is another reason that you might want to model.
+
+72
+00:07:50,340 --> 00:07:56,380
+想要的不仅仅是一个验证指标 在这种情况下 某种分布外的度量可能就足够了
+Want something more than just a validation metric. In this case, some kind of out of distribution metric might might be enough.
+
+73
+00:07:58,320 --> 00:07:59,280
+最后 还有一件你可能想要的东西
+Lastly, another thing you might want.
+
+74
+00:08:02,260 --> 00:08:06,300
+我想考虑一个模型比人表现得更好的例子
+I guess consider a case where a model performs better than a person as something.
+
+75
+00:08:07,690 --> 00:08:12,450
+在这种情况下 你可能想要了解模型发现了什么 那些没有发现的人
+In that case, you probably want to understand what the model figured out, that the people the person didn't.
+
+76
+00:08:13,560 --> 00:08:16,080
+这可以帮助我们了解
+And this can help us learn something about.
+
+77
+00:08:16,770 --> 00:08:25,290
+模型知道而我们不知道的潜在现象或情况 所以事实证明 这在Alphago身上已经发生了
+The underlying phenomenon or situation that the model knew, and we didn't, so this turns out, was has already happened for Alphago.
+
+78
+00:08:26,520 --> 00:08:34,880
+深层思维系统打败了人们 人们现在对这个游戏的了解比以前更多了
+Um, where the deep mind system beat beat people, and people have now learned more about the game than they knew previously.
+
+79
+00:08:36,410 --> 00:08:41,570
+我 我不知道我们在语言方面是否已经走到这一步了 但是
+Uh, I-I don't know that we've really gotten this far with language, um, but.
+
+80
+00:08:42,710 --> 00:08:47,550
+比如说 在未来 我们会有语言模型
+Uh, say, in the future, we get models of language that perform.
+
+81
+00:08:48,960 --> 00:08:56,120
+这有点接近人类的行为 想要知道模型内部发生了什么是合理的 也许这样我们就可以学习语言
+Somewhat close to what humans do, it would be reasonable to want to know what's going on inside that model so that we can learn something about language, perhaps.
+
+82
+00:08:58,850 --> 00:09:05,970
+好的 如果这些是我们想做的超出验证指标的事情 我们有什么方法可以尝试回答这些问题
+Um, OK, so if these are the things we want to do beyond validation metrics, what methods are available to us to try to answer these questions?
+
+83
+00:09:07,520 --> 00:09:12,440
+UM 这类方法有很多种 和第一个
+UM, and there there are broad categories of these kinds of methods. And the first.
+
+84
+00:09:13,290 --> 00:09:19,970
+我想说的是 基本上是试着看模型内部 看它的各个部分 它的重量
+Category that I would um say is basically try to look inside the model, at various parts of it. Its weights.
+
+85
+00:09:21,820 --> 00:09:27,420
+试着理解这些权重是怎么回事这样我们就能更好地理解这个模型
+And try to understand what's going on with those weights so that we can understand the model better.
+
+86
+00:09:28,160 --> 00:09:36,000
+这包括观察神经元 神经元激活和图像 或者是未受干扰的情绪神经元
+So this includes things like looking at neuron, neuron activations and images, or like the unsubervised sentiment neuron from the.
+
+87
+00:09:36,580 --> 00:09:38,060
+睁大眼睛 伙计们 一段时间前
+Uh, open eye, folks. A while ago,
+
+88
+00:09:38,570 --> 00:09:42,770
+更典型的是 今天我们看到很多试图探究的论文
+Um, more typically, today we see a lot of papers on trying to probe.
+
+89
+00:09:43,530 --> 00:09:48,770
+这些表示 不是直接把神经元形象化 用一个向量
+Uh, these representations, that is, instead of just visualizing a neuron directly take a vector, uh,
+
+90
+00:09:49,910 --> 00:09:58,470
+在我的网络的不同部分 并试图从这个向量解码 各种语言或其他现象 所以
+At various parts of my network and try to decode from that vector, uh, various linguistic or other kinds of phenomena. So.
+
+91
+00:09:59,630 --> 00:10:02,110
+在这个例子中 我们可能会
+Um, here, in this example, we might take.
+
+92
+00:10:03,260 --> 00:10:03,380
+嗯
+Um,
+
+93
+00:10:05,410 --> 00:10:14,690
+获取一个输入 通过burn或其他上下文化器运行它 在不同的点获取向量 然后从这个向量单独分类语音的一部分 为输入标记
+Takes an input, run it through burnt or some other contextualizer, take the vectors at various points, and then classify from that vector alone a part of speech, tag for the input.
+
+94
+00:10:16,240 --> 00:10:22,320
+这可能会告诉你模型编码了什么 在这个方向上你需要做很多研究
+And then maybe maybe this will tell you something about what the model has encoded. There's a lot of research in this direction you need to take.
+
+95
+00:10:23,540 --> 00:10:31,300
+这里的结果有很多不确定的地方 但这是这是你可以采取的一种方法来尝试理解模型内部发生了什么
+Particular results here with lots of grains of salt, um, but this is this is one approach you might take to try to understanding what's going on inside the model.
+
+96
+00:10:32,790 --> 00:10:39,030
+另一种方法是 不要看网络内部 看它的权重 看那里发生了什么 而是看网络外部 看它预测了什么
+Another approach is instead of looking inside the network, at, at its weights, what's going on there, look outside the network at what it predicts.
+
+97
+00:10:39,870 --> 00:10:43,150
+这里 仔细构造的输入
+So here, um, with carefully constructed inputs.
+
+98
+00:10:44,400 --> 00:10:49,120
+它们是用来测量特定事物的 我们也许能看出来
+Um, that that are targeted to measure particular things. We might be able to tell.
+
+99
+00:10:49,990 --> 00:10:57,030
+如果不知道为什么 模型可以捕捉到某些现象 我们可以决定它是否捕捉到这些现象
+Uh, if not why, a model is able to capture certain phenomena, we can decide whether it captures those phenomena.
+
+100
+00:10:57,590 --> 00:11:04,470
+所以这些是 这已经有很多工作很长一段时间了 它得到了 额 越来越多的工作
+And so these are, this has seen a whole lot of work for a for a long time, it's getting uh, increasing amounts of work.
+
+101
+00:11:05,360 --> 00:11:10,520
+我在这里展示了一个诊断集的表 它是几年前为忧郁基准创建的
+I'm showing here a table from a diagnostic set that was created for the the gloom benchmark a few years ago.
+
+102
+00:11:11,400 --> 00:11:11,520
+嗯
+Um,
+
+103
+00:11:12,390 --> 00:11:19,230
+这只是表明 如果 如果我们仔细地构建有针对性的输入来测量特定的东西
+And this is just showing that, uh, if, if we carefully construct inputs that are targeted to measure a particular thing,
+
+104
+00:11:19,780 --> 00:11:22,060
+我们可以知道模型学到了什么
+We can know something about what our model has learned.
+
+105
+00:11:23,410 --> 00:11:23,530
+哦
+Uh,
+
+106
+00:11:24,740 --> 00:11:32,380
+我们采用的另一种方法是改变模型结构本身 以便使它在某种意义上具有内在的可解释性
+Another approach that we have is changing the model structure itself in order to make it inherently interpretable in some sense.
+
+107
+00:11:32,930 --> 00:11:39,530
+最近人们有几种不同的方法来做这件事 其中之一是
+And there are a couple of different ways that people have done this recently. One of them is the.
+
+108
+00:11:40,590 --> 00:11:48,590
+这是最近兴起的理论或解释 你有一个模型 除了输出一个特定的预测
+Really pretty recent rise of rationales or explanations, where you have a model in addition to outputting a particular prediction.
+
+109
+00:11:49,500 --> 00:11:56,180
+你让它输出或生成a-一个纯文本解释或它所做的预测的原理
+You have it output or generate A-A plain text explanation or rationale for the prediction that it made.
+
+110
+00:11:56,950 --> 00:12:01,870
+如果我要预测情绪 我可能有t5模型 除了输出
+So here if I'm uh, predicting sentiment, I might have my T five model. In addition to outputting.
+
+111
+00:12:02,410 --> 00:12:06,570
+弦 分类弦 那这个情绪 那这个评论是消极的
+The string, the classification string, that this sentiment, that that this review was negative.
+
+112
+00:12:07,170 --> 00:12:14,490
+同时给出解释说表演很糟糕 或者在这里 它基本上是在鹦鹉学舌它认为最重要的输入部分
+Um, also given explanation that says the acting was terrible, or here, it's basically parroting this part of the input that it thought was most, um,
+
+113
+00:12:15,810 --> 00:12:22,130
+这种消极的预测和这个模型 我想这个方法是可行的
+Evocative of this negative prediction and this model, I guess this technique could work, um,
+
+114
+00:12:23,310 --> 00:12:26,470
+但问题是 这并不一定
+There's a problem with this is that it's not necessarily.
+
+115
+00:12:27,450 --> 00:12:31,970
+因果关系 也就是说 没有什么东西迫使模型产生这个解释
+Causal, that is, there's nothing forcing the model to generate this explanation.
+
+116
+00:12:33,140 --> 00:12:40,260
+在某种程度上影响了预测 所以这项技术是很有前途的 但它还处于起步阶段
+In a way that actually affects the prediction. So this technique could be promising, but it's still very early in a it has.
+
+117
+00:12:41,070 --> 00:12:43,630
+一些问题 另一种方法
+A few issues, another another approach.
+
+118
+00:12:44,760 --> 00:12:46,200
+嗯 是
+Um, is to.
+
+119
+00:12:47,760 --> 00:12:54,240
+所以这个方法说 让我让我的模型生成一些东西希望是a
+So so this approach says, let me let me have the model generate something that hopefully is a.
+
+120
+00:12:55,530 --> 00:12:59,770
+对模型行为的合理忠实的解释 另一种方法是
+Reasonably faithful interpretation or explanation for what the model did. Another approach is to.
+
+121
+00:13:00,690 --> 00:13:03,890
+瓶颈 在某种意义上 模型的计算
+Bottle neck, in some sense, the computation of the models such that.
+
+122
+00:13:04,630 --> 00:13:11,390
+因此 模型中有一些可检验的部分是可以解释的 很长一段时间以来 人们一直在说线性模型
+Um, by that, there are examinable parts of the model that are inherently interpretable, and people have said this about linear models for a long time.
+
+123
+00:13:11,790 --> 00:13:14,230
+因为它们很简单 所以你可以解释它们
+That you can just interpret what's there because they're simple.
+
+124
+00:13:14,760 --> 00:13:21,600
+嗯 有一类模型 我想是这样的 有很多不同类型的模型人们对这些模型有这样的要求
+Um, there's a class of models that I-I guess there, there are a number of different kinds of models that people make these claims about, for.
+
+125
+00:13:22,260 --> 00:13:23,460
+而不是内在的可解释性
+Than being inherently interpretable?
+
+126
+00:13:24,620 --> 00:13:32,420
+我在这里展示了一个神经模块网络的例子其中的计算是以特定的方式分解的 这样你就有了这些模块
+I'm showing here an example of a neural module network where the computation that is done is decomposed in a particular way, such that you have these modules that.
+
+127
+00:13:33,190 --> 00:13:39,430
+至少大概 嗯 是可以理解的 因为模型告诉你它在做什么
+At least presumably, uh, are, um, a priori understandable, because the model tells you what it's doing.
+
+128
+00:13:40,290 --> 00:13:42,970
+为了回答一个特定的问题而执行的计算
+The computation that it performs in order to answer a particular question.
+
+129
+00:13:45,050 --> 00:13:52,890
+有证据表明即使是这样也不足以解释 但事实并非如此
+And again, here there's, there's evidence that that even even this is not good enough for, for explanation, but that's not.
+
+130
+00:13:53,430 --> 00:13:55,950
+这个演讲的范围 所以 我要继续讲下去
+The scope of this talk. So, uh, I'm going to keep going.
+
+131
+00:13:58,000 --> 00:14:03,320
+好吧 我们可以看看模型内部 我们可以看模型之外 我们可以改变模型的结构
+Um, okay, so we can look inside the model. We can look outside the model, we can change the structure of the model.
+
+132
+00:14:04,360 --> 00:14:08,600
+这些都是我们观察可解释性的不同方法 或者试图理解模型中发生了什么
+These are all different ways that we can look at interpretability, or try try to understand what's going on with the model.
+
+133
+00:14:09,680 --> 00:14:16,840
+另一个方法是观察输入 或者更确切地说 试着理解输入的哪些部分导致了特定的预测
+Another one is look at the inputs, or or rather try to understand what parts of the input led to a particular prediction.
+
+134
+00:14:18,700 --> 00:14:22,540
+这里 再看一个情绪 a-a分析 例子
+So here, again, looking at a sentiment, A-A analysis, example.
+
+135
+00:14:23,470 --> 00:14:31,350
+假设我有一项情感分析 预测这篇评论是正面的 是关于通过文化冲突学习的智慧小说
+Say that I have a sentiment analysis that predicted that this review was positive, an intelligent fiction about learning through cultural clash.
+
+136
+00:14:32,100 --> 00:14:34,260
+我可能会试着检查这个输入
+I might try to examine this input.
+
+137
+00:14:34,950 --> 00:14:41,910
+看看输入的哪些部分更有可能预测积极情绪 哪些部分更有可能预测消极情绪
+And see what parts of the input made the model more likely to predict positive sentiments and which parts were made it more likely to predict negative sentiment.
+
+138
+00:14:42,790 --> 00:14:48,830
+在这个例子中 这个方法可能会发现聪明的人更有可能是积极的
+And here in this case say that, uh, this method might find that intelligent is more likely to be positive.
+
+139
+00:14:49,890 --> 00:14:53,090
+虚构和冲突让他们更有可能预测消极
+And fiction and clash made them a little more likely to predict negative.
+
+140
+00:14:55,110 --> 00:14:59,630
+我们可以把这个基本方法做得更深入一点
+We could, um take this basic method and go a little bit farther.
+
+141
+00:15:00,330 --> 00:15:04,010
+假设我们有一个N-R命名实体识别模型
+Um, so say we have an N-R named entity recognition model.
+
+142
+00:15:05,390 --> 00:15:13,230
+这就预示了NLP cool是一个人 Joe爷爷是一个组织 而深度学习是我在这里展示的这个特定输入的位置
+That predicts that NLP, cool is a person that Grandpa Joe is an organization, and deep learning is a location for this particular input that I'm showing here.
+
+143
+00:15:14,350 --> 00:15:15,390
+嗯 我们可以
+We can, um.
+
+144
+00:15:16,670 --> 00:15:24,390
+用这些方法来查看输入中重要的部分然后试着删除不重要的部分这样我们就能得到
+Take these methods that look at the important parts of our input and try to remove things that are unimportant so that we get, in some sense, something that's.
+
+145
+00:15:25,240 --> 00:15:31,840
+非常非常接近于一个因果解释 解释了为什么模型预测了它所做的预测
+Pretty pretty close to a causal explanation for why the model predicted the predictions that it did.
+
+146
+00:15:32,620 --> 00:15:39,140
+这样我们就可以排除所有不必要的因素并找出导致这个预测的原因
+In that we can remove everything that was unnecessary and isolate what exactly it was that caused this particular prediction.
+
+147
+00:15:39,840 --> 00:15:47,160
+对于N-O-P的预测 酷是一个人 我们可以看到 如果我们只给出输入 N-O-P 酷
+So for the prediction of N-O-P, cool being a person, we can see that if we only give as inputs named N-O-P cool.
+
+148
+00:15:48,330 --> 00:15:56,210
+然后这个模型仍然预测 根据N-O-P 酷是一个人 所以这就足够了 在某种程度上导致了预测 同样的 对于爷爷 是一个组织
+Then the model still predicts that per that N-O-P, cool is a person, so this is sufficient, and in some sense cause the prediction, And similarly, for Grandpa Joes, being an organization.
+
+149
+00:15:58,950 --> 00:16:02,910
+我们只需要在爷爷乔斯 为了深度学习 我们需要在市中心进行深度学习
+All we need is at Grandpa Joes, and for deep learning, we need in downtown deep learning.
+
+150
+00:16:04,710 --> 00:16:13,150
+这类方法会观察很多东西 告诉我们在做出特定预测时输入的哪些部分是重要的
+So uh, this is this class of methods that will look at a lot, tells us what parts of the input were important in making a particular prediction.
+
+151
+00:16:14,150 --> 00:16:14,270
+哦
+Uh,
+
+152
+00:16:15,080 --> 00:16:18,520
+我们可以把它推广一下
+We could generalize this a little bit and say, are there.
+
+153
+00:16:20,150 --> 00:16:28,910
+全局线索 当我们在很大一部分数据集中观察个体的预测时 我们能否找到模型所依赖的全局决策规则
+Global cues, when we look at individual predictions on a large portion of the dataset, can we find global decision rules that the model is relying on in order to.
+
+154
+00:16:28,950 --> 00:16:36,710
+使其摩擦 在某些情况下 你可以 嗯 我在右边展示了一些单词
+Make its frictions. And in some cases, you can, um, I'm showing here on the right a list of words that.
+
+155
+00:16:37,680 --> 00:16:45,040
+在斯坦福自然语言推理数据集中 如果你在假设模型的任何地方添加一个这样的词
+Um, turns out for the Stanford Natural Language Inference dataset, if you append one of these words anywhere in the hypothesis, the model.
+
+156
+00:16:45,700 --> 00:16:52,820
+基本上有100%的可能性 它预测了 嗯 推断是矛盾的
+Basically with 100% probability, it predicts that the the um inference is contradicted.
+
+157
+00:16:54,340 --> 00:16:58,700
+假设是矛盾的 所以这在某种意义上是一个全局决策规则
+Are the hypothesis is contradicted, and so this is in some sense a global decision rule.
+
+158
+00:16:59,520 --> 00:17:05,760
+无论出于什么原因 模型已经学习到我们可以尝试去寻找 通过分析模型 预测
+That the model has, for whatever reason, learned that we could try to find. By analyzing the models, prediction.
+
+159
+00:17:07,260 --> 00:17:07,380
+年代
+s
+
+160
+00:17:08,600 --> 00:17:10,960
+最后 正如我之前提到的 当我
+And lastly, as I mentioned earlier, when I was, uh,
+
+161
+00:17:11,970 --> 00:17:16,650
+讨论除了验证指标之外我们还想做什么 我们 我们可以
+Talking about what kinds of things we want to do beyond validation metrics. We, we can.
+
+162
+00:17:17,560 --> 00:17:21,840
+将个人的预测追溯到训练数据
+Trace individual predictions back to the training data that.
+
+163
+00:17:23,410 --> 00:17:28,810
+我不太想用原因这个词 但在某种意义上 它确实导致了我们看到的预测
+Uh, I, I'm hesitant to use the word cause, but in some sense, it does cause the prediction that we saw, um,
+
+164
+00:17:29,880 --> 00:17:34,760
+在测试的时候 因为我们知道使用的学习算法
+Uh, at test time, so because we know the learning algorithm that was used.
+
+165
+00:17:35,590 --> 00:17:42,430
+为了训练产生预测的模型 我们可以追溯学习算法
+In order to train the model that led that produced the predictions, we can trace back through that learning algorithm.
+
+166
+00:17:42,920 --> 00:17:47,720
+为了找出哪些例子对测试预测的影响最大
+In order to find which examples were most influential for making the test prediction.
+
+167
+00:17:50,510 --> 00:17:52,670
+这是a
+Okay, so here s this, is a.
+
+168
+00:17:54,050 --> 00:18:01,370
+可能你可能不会采用完全全面的方法 但你能想到的大多数东西都可以归入这些口袋
+Probably not totally comprehensive set of methods you might take, but most things you could think of fall into one of these pockets.
+
+169
+00:18:02,380 --> 00:18:11,140
+看看模型本身 看看模型的输出 看看模型的输入 或者试着改变模型结构本身 让它具有可解释性
+Look at the model itself, look at the outputs of the model, look at the inputs to the model, or try to change the model structure itself, to bake in interpretability, um,
+
+170
+00:18:12,510 --> 00:18:20,190
+如果我们看看这些方法 前两种方法 或者是ACL20 20教程的主题 它已经被记录下来了 并且是可用的 你可以去找它 太棒了
+If we look at these methods, the first two, or the subject of a tutorial at ACL 20:20 which it was recorded and is available, you can go find it. It's great.
+
+171
+00:18:20,700 --> 00:18:23,140
+如果你想了解更多关于这些特定方法的知识 可以看看它
+Look at it if you want to learn more about these particular methods.
+
+172
+00:18:24,990 --> 00:18:31,230
+不幸的是 据我所知 在这一点上 将可解释性写入模型中并没有任何全面的资源
+Baking interpretability into the model unfortunately doesn't have, as far as I know, any comprehensive resources at this point, it.
+
+173
+00:18:31,850 --> 00:18:40,570
+它不是一个特别连贯的集合或者是一些很容易得到综合资源的集合 所以可能这就是为什么没有
+It's not a particularly coherent set or or cohesive set of things that would be easy to make comprehensive resources about, so maybe that's why there aren't any.
+
+174
+00:18:41,180 --> 00:18:44,900
+或者 我不知道 也许我错了 也许明年 我们会看到一个很棒的教程
+Or, but I don't know, maybe I'm wrong, maybe next year, we'll see a great tutorial trying to.
+
+175
+00:18:45,520 --> 00:18:47,440
+告诉我们这些事
+And tell us all about these things.
+
+176
+00:18:48,640 --> 00:18:51,200
+在本教程中 我们将重点讨论最后三个
+In this tutorial, we're gonna be focusing on these last three.
+
+177
+00:18:51,590 --> 00:18:59,150
+观察我们输入的不同部分以及模型做出的特定预测以试图理解模型内部发生了什么
+Looking at various parts of our input to try to and at specific predictions that a model makes in order to try to understand what's going on inside the model.
+
+178
+00:19:00,400 --> 00:19:02,920
+那么为什么这些特殊的方法
+So why these particular methods, um.
+
+179
+00:19:04,000 --> 00:19:10,920
+我想我会说 我不认为这些方法可以回答所有你可能想要的关于可解释性的问题
+I guess I would say, I don't think these methods can answer all the questions that you might want about interpretability.
+
+180
+00:19:12,010 --> 00:19:13,810
+但我觉得有个好的开始
+But I-I do think there are a good starting place.
+
+181
+00:19:14,720 --> 00:19:20,880
+当我试图理解模型内部发生了什么时 我要做的第一件事就是把它放到demo中
+When I try to understand what's going on inside a model, pretty much, the first thing I will do is put it up in a demo.
+
+182
+00:19:21,420 --> 00:19:24,420
+玩一下 看看它对每个人的预测有什么作用
+And play with it and look at what it does on individual predictions.
+
+183
+00:19:25,060 --> 00:19:33,860
+我们将在本教程中讨论的方法会给你更多的信息 让你知道当你在做什么时 当你在看单个预测时 会发生什么
+And the methods that we're going to talk about in this tutorial give you more information about what's going on when you are doing, when you're looking at individual predictions.
+
+184
+00:19:34,720 --> 00:19:43,360
+然后这些通常会给你更多的洞察力 当你使用我提到的其他类型的解释方法时 你应该看什么
+And then those can often give you more insight, uh, to what you should be looking at when you use other kinds of interpretability methods that I talked about.
+
+185
+00:19:43,770 --> 00:19:44,410
+嗯 早
+Uh, earlier.
+
+186
+00:19:45,750 --> 00:19:53,790
+这些模型 这些方法 也有一些理想的属性 你需要对模型的访问通常是简单和通用的 嗯
+These model, these methods, also have some desirable properties, and that the access that you need to the model is typically easy and general. So um,
+
+187
+00:19:54,410 --> 00:20:00,690
+你可以 很多这些方法只在模型的黑盒访问中工作 所以它们适用于任何模型 嗯 还有
+You can, a lot of these methods work only with black box access to the model, so they work with any model at all, um, and.
+
+188
+00:20:01,480 --> 00:20:06,240
+大多数其他方法只需要访问梯度 工作和不做
+Most of the other methods need access to gradients only, and work and make no.
+
+189
+00:20:07,120 --> 00:20:13,960
+不 对模型没有要求 除了你需要能够计算成分 所以他们基本上可以用任何你想要的模型
+No, have no requirements for the model, other than that you that that you need to be able to compute ingredients. And so they work with basically any model that you that you want.
+
+190
+00:20:15,410 --> 00:20:22,290
+它们通常也非常快 也很容易计算 不过也有一些例外情况
+And they are also typically pretty fast and easy to compute, though there are some exceptions that will talk about and.
+
+191
+00:20:24,230 --> 00:20:25,990
+因为他们依赖于
+Because they rely on, um.
+
+192
+00:20:27,210 --> 00:20:34,610
+查看黑盒模型方法的实际模型输出 或者查看模型本身使用的损失梯度
+Looking at the actual model outputs for black box model methods, or looking at the the gradients of the loss that the model uses itself.
+
+193
+00:20:35,280 --> 00:20:39,800
+在某种意义上 它们本质上忠实于模型所进行的计算
+They are in some sense inherently faithful to the computation that is being done by the model.
+
+194
+00:20:40,520 --> 00:20:48,040
+不过 这让他们很受欢迎 因为你不需要那么担心它是否
+Though, and so, uh, that makes them desirable, because you don't need to worry as much about whether it's.
+
+195
+00:20:48,860 --> 00:20:55,220
+实际上是在解释正确的东西 尽管在本教程中我们会讲到很多关于这个说法的注意事项 你需要
+Actually explaining the right thing, though there are a whole lot of caveats to that statement that we will get to as we go through this tutorial. You need to.
+
+196
+00:20:56,110 --> 00:21:02,350
+然而 乍一看 他们似乎确实应该忠实于计算 忠诚是有限制的
+While at, at first glance, they do seem like they should be faithful to the computation. There there are, there are limitations to this, um, faithfulness.
+
+197
+00:21:04,480 --> 00:21:12,880
+好的 嗯 我想本教程的结构是 对于这三种方法中的每一种 都会有一节讲
+Okay, um. And so the, I guess the tutorial is structured where we are going to, for each of these three methods, will have one section talking about each of these.
+
+198
+00:21:14,260 --> 00:21:22,580
+解释方法的详细类 然后我们会回到 如何在代码中实现这些方法 在你自己的代码中
+Classes of interpretation methods in detail, and then we'll circle back, uh, on how to implement some of these methods in code, in your your own code.
+
+199
+00:21:23,190 --> 00:21:26,670
+然后我们会以一些未决的问题结束
+Um, and then we'll end with some open problems in.
+
+200
+00:21:27,980 --> 00:21:33,260
+通过这些我们还没有真正回答的方法或问题 如何使用或扩展这些解释方法
+With these methods or questions that we haven't really answered about, how to use or extend these interpretation methods.
+
+201
+00:21:34,460 --> 00:21:38,460
+说到这里 我想我要停止提问 然后把它交给涂片
+And with that, I think I will stop for questions and then hand it over to smear.
+
+202
+00:21:40,800 --> 00:21:40,920
+嗯
+HM,
+
+203
+00:21:44,860 --> 00:21:48,780
+幻灯片上有几个问题 我想我们可能会等一会再说
+A few questions in a slide, I think that we'll probably wait to be later on.
+
+204
+00:21:50,070 --> 00:21:57,430
+有几个关于评估的问题还有一些关于未决问题的问题 我想我们可能会在最后讨论 因为我们都会在材料中讨论这个问题
+There is a couple of questions about evaluation and also some things about open problems, which I think we can take probably at the end, because we are all going to discuss this in this material.
+
+205
+00:21:58,320 --> 00:22:03,920
+最后我们要讨论的量化指标的首要问题是 坚持下去
+Yeah, the top question on quantifying metrics we can discuss at the end, yep, sounds good, says stick around.
+
+206
+00:22:06,010 --> 00:22:10,490
+谢谢一些 等我一下
+Thank some here. Give me a second.
+
+207
+00:22:18,150 --> 00:22:22,110
+好吧 我要讲的是 什么是
+All right, so, um, I'm gonna be talking about, what is the.
+
+208
+00:22:22,830 --> 00:22:31,790
+这是目前最流行的一套解释技术 即找出输入的哪些部分导致了预测 我们会讲到很多不同的
+Sort of most popular set of explanation techniques right now, which is to figure out what parts of an input led to a prediction. and we're going to be talking about a lot of different.
+
+209
+00:22:32,810 --> 00:22:33,130
+需要在这里
+Takes here.
+
+210
+00:22:33,790 --> 00:22:39,430
+所以本质上 这个教程是要弄清楚为什么我的模型会做出这样的预测吗
+And so essentially, the idea is, you know, does this tutorial is about figuring out why did my model make this prediction?
+
+211
+00:22:39,970 --> 00:22:48,730
+在这一节中 我们将关注输入的哪些部分负责这个预测 对吧 所以我们并没有回答 为什么会这样
+In this section, we're going to be focusing on which parts of the input are responsible for this prediction, right? So we're not answering the whole question of, why did this.
+
+212
+00:22:49,570 --> 00:22:54,930
+对这个预测建模 但只关注这样一个事实 嗯 输入的哪一部分是最重要的
+Modeling this prediction, but only focus on the fact that, um, what parts of the input are most responsible.
+
+213
+00:22:56,280 --> 00:23:04,320
+所以在这些问题中 哪个重要的部分是最负责任的 基本上有两类方法 其中一些是
+So within these, this question of what part of the important is most responsible. There are essentially two classes of methods, and some of this is.
+
+214
+00:23:04,780 --> 00:23:07,020
+我们在教程中所做的 你可能找不到
+What we've done for the tutorials. And you may not find.
+
+215
+00:23:08,210 --> 00:23:15,370
+就像这些特定题目的论文 但是 本质上 有一个完整的类别
+Like papers on specific titles like these, but um, essentially, uh, there is a whole category of, uh,
+
+216
+00:23:16,460 --> 00:23:20,580
+方法称为seldencymaps 嗯 部分取决于他们的产出 嗯
+Methods called seldency maps. Uh, partly based on what they output. Um?
+
+217
+00:23:21,440 --> 00:23:28,160
+这些包含基于创建的方法和基于扰动的方法 我们会逐一讨论
+And these contain creating based methods and perturbation based methods, and we're going to be talking about each one of those.
+
+218
+00:23:28,870 --> 00:23:33,430
+与挑战地图不同的是动机本身作为解释
+And separate from challency maps are more motivations themselves as explanations.
+
+219
+00:23:34,790 --> 00:23:41,550
+这包括减少投入和一些不稳定的动机 第二种是 我认为
+Which includes input reduction and some unstable motivations. And then the second category is, I think of.
+
+220
+00:23:42,650 --> 00:23:48,250
+目前规模较小 但也越来越受到关注 所以
+Smaller right now, but getting more and more attention as well. So.
+
+221
+00:23:49,680 --> 00:23:54,400
+让我们来谈谈航行图以及它们是什么 然后 我们会讨论动机
+Let's actually talk about sailency maps and talk about what they are, and then later on, we'll talk about motivations.
+
+222
+00:23:55,790 --> 00:24:03,670
+一般来说 映射是指解释技术的输出 我们现在要做的是
+So salency maps in general are talking about with the output of the explanation techniques. So what we are trying to do here.
+
+223
+00:24:04,310 --> 00:24:09,790
+是计算输入中每个令牌的相对重要性
+Is compute the relative importance of each token in the input.
+
+224
+00:24:11,850 --> 00:24:17,770
+那么 松散定义下 重要性是什么意思 这在不同的方法中是不同的
+So what does importance mean, loosely defined And this is something that varies across methods.
+
+225
+00:24:18,840 --> 00:24:25,200
+考虑这个问题的方法是 如果你改变或移除一个令牌 你想要计算其重要性的令牌
+The way to think about this is if you change or remove a token, the token that you want to compute the importance of.
+
+226
+00:24:26,090 --> 00:24:33,370
+他们的预测会受到多大影响这个定义中有很多未解的问题 这就是为什么这个定义很宽泛
+How much will their prediction get affected And there are lots of unanswered questions in that definition, which is why this is loosely defined.
+
+227
+00:24:34,530 --> 00:24:38,810
+所以你知道 例子是最好的 所以这是它们可能的样子
+So you know, examples are best, so here are what they might look like.
+
+228
+00:24:39,670 --> 00:24:46,790
+这是一个情感分析的例子 你有一个关于通过文化冲突学习的评论和情报虚构
+Here's an example of sentiment analysis, where you have a review and intelligence fiction about learning through cultural clash.
+
+229
+00:24:47,570 --> 00:24:54,770
+我们强调的是 蓝色代表的是积极预测 像纵容这样的词
+Um, what, we are highlighting and blue here are things that contribute towards a positive prediction. So words like indulgent.
+
+230
+00:24:55,560 --> 00:25:01,000
+增加了模型的正面评价的可能性
+Are increasing the models probability of it being a positive review.
+
+231
+00:25:01,860 --> 00:25:10,660
+红色的东西 比如小说和冲突 向模型表明这篇评论可能有更负面的基础 所以
+And things in red, like fiction and clash, suggests to the model that maybe this review has a has more negative foundation for it. So.
+
+232
+00:25:11,220 --> 00:25:15,500
+如果没有部落冲突 模型描述可能会更正面
+Um, if Clash wasn't there, the model description would probably be more positive.
+
+233
+00:25:17,450 --> 00:25:17,570
+嗯
+Um,
+
+234
+00:25:18,770 --> 00:25:25,130
+还有一些稍微复杂一点的任务 比如回答问题 也可以从量刑图中受益 所以
+There are also slightly more complex tasks, like question answering that can also benefit from sentencing maps. So.
+
+235
+00:25:25,690 --> 00:25:34,530
+有个问题 哪个公司通过快速阅读比赛赢得了免费广告 你知道 有一篇文章 有一个答案 诸如此类的东西 这不仅仅是一个分类问题
+Here's a question, what company won free advertisement due to quick books contest And you know, there's a passage, and there's an answer, and things like that, it's not just a classification Problem.
+
+236
+00:25:35,480 --> 00:25:43,560
+但你仍然可以发现这个问题对模型来说什么是重要的 结果是 在这种情况下 一堆单词是重要的 对吧
+But you can still find out what about this question was important for the model, and turns out, in this case, a bunch of words were important, right?
+
+237
+00:25:44,690 --> 00:25:51,010
+但最重要的词是广告 所以无论如何 根据上下文或答案是如何出现的
+But the most important word was advertisement, so somehow either based on the context or how the answer appears.
+
+238
+00:25:51,600 --> 00:25:54,040
+嗯 广告这个词真的真的很重要
+Um, the word advertisement really really matters.
+
+239
+00:25:57,210 --> 00:26:02,290
+即使从数学语言建模 这不是一个传统的任务 在n l p  你仍然可以使用
+Even from math language modeling, which is not a traditional task in N. l. p., you can still use.
+
+240
+00:26:02,970 --> 00:26:12,250
+像占星图这样的东西来弄清楚发生了什么 这是我们做的一本书 里面有这句话 面具跑到急诊室去看她的病人
+Things like seancy maps to figure out what's going on, so this is some book we did where you have this sentence, the mask ran to the emergency room to see her Patient.
+
+241
+00:26:12,930 --> 00:26:18,610
+你想知道面具模型预测的最佳解释是什么 对吧
+And you want to see in what is the best explanation for the models prediction of mask, right?
+
+242
+00:26:19,080 --> 00:26:24,200
+这取决于情况吗 它取决于运行还是有其他更长的东西 哦
+Does it depend on, though? Does it depend on run or is there something else which is longer? Uh,
+
+243
+00:26:25,010 --> 00:26:31,290
+这个模型正在观察的范围 在这种情况下 结果是 是的 它正在看她 这是一个相当远的距离 嗯
+Range that the model is looking at, and in this case, it turns out that yes, it's looking at her, which is quite a way away. Um,
+
+244
+00:26:31,940 --> 00:26:39,980
+作为一种表示 不管我在这里生成的是什么 都应该与女性程序保持一致
+As a way to indicate that maybe whatever I'm generating here should be, should should be consistent with the female program.
+
+245
+00:26:41,960 --> 00:26:50,080
+这就是Sailency地图的样子 我还没有讲过我们是如何计算它们的 但是你们可以很好地理解
+Okay, so these are what Sailency maps look like. Uh, I haven't talked at all about how we actually compute them, but you can pretty get a pretty good idea of.
+
+246
+00:26:50,740 --> 00:26:58,820
+它们是如何提供相对重要性的 即使有方向 比如积极的声音 消极的声音 嗯 在很多不同的任务中
+How they are providing relative importance, even with the direction, like positive voices, negative, um, for, for a bunch of different tasks.
+
+247
+00:26:59,690 --> 00:27:07,250
+让我们来看看这些东西是如何工作的 我将从 嗯 我们是如何生成这些的开始
+So let's actually get into the nitigities of how these things work. And I'm going to start with, um, how we actually generate these.
+
+248
+00:27:07,830 --> 00:27:11,790
+使用原料 这是理解这些东西如何工作的最简单的方法
+Using ingredients, this is sort of the simplest way to understand how these things work.
+
+249
+00:27:12,360 --> 00:27:17,880
+随着我们的研究 我们对它们是如何工作的以及它们产生了什么变得越来越复杂
+And as we go through, uh, we, we get more and more complex in in what how they work and what they produce?
+
+250
+00:27:19,660 --> 00:27:19,780
+所以
+So.
+
+251
+00:27:21,290 --> 00:27:28,890
+这个梯度的工作方式是把特征的重要性看作是模型输出的导数
+The way this gradient work is to think of importance of a feature as the derivative of the output of the model.
+
+252
+00:27:29,280 --> 00:27:30,480
+关于这个特性
+With respect to that feature.
+
+253
+00:27:31,390 --> 00:27:36,510
+为什么说得通呢我会看一看的 但如果你还记得献词的真正含义
+Why does that make sense Will take a look at it, but if you remember what a dedicative actually means.
+
+254
+00:27:37,160 --> 00:27:40,880
+从数学上讲 这意味着你的
+Um, mathematically, it means that a very tiny change to your.
+
+255
+00:27:41,710 --> 00:27:43,830
+X 如果它在D/X附近
+X, if it's near D by the X.
+
+256
+00:27:44,870 --> 00:27:53,830
+这对输出有什么影响 对吧 在这种情况下 你看到的代币的一个微小变化会影响对早晨的预测
+How does that affect the output? Right? So in this case, what does a tiny change to your token that you're looking at affect the prediction of the morning.
+
+257
+00:27:55,100 --> 00:28:04,020
+所以 嗯 如果我们开始更直观地思考 这里发生了什么 想象有一个空间 连续的空间 为了方便
+So, um, if we start thinking about more visually, what's going on here, imagine there's a space, continuous space, just for ease.
+
+258
+00:28:04,540 --> 00:28:06,980
+有两个维度 x 1 x 2
+Uh, where you have two dimensions x, one, an x, two.
+
+259
+00:28:07,510 --> 00:28:16,790
+已知模型V-Y(x)蓝色表示正 红色表示负 或者蓝色表示1 红色表示0 和
+And you have your model V-Y given x and blue, here is, say, positive, and red is negative, or you can think of blue as one and red as zero. And.
+
+260
+00:28:17,380 --> 00:28:19,900
+一些谱 如果你想把它看成概率
+Some spectrum, if you want to think of it as probability.
+
+261
+00:28:21,430 --> 00:28:28,790
+那么问题就变成了 如果我们想要解释或计算位于该区域的输入X的Sailency映射
+The question then becomes, if we want to explain or compute the Sailency map of an input X that lies in that region.
+
+262
+00:28:29,410 --> 00:28:31,490
+什么是正确的
+Um, what should it be right.
+
+263
+00:28:32,020 --> 00:28:40,060
+现在如果你想一下 这里发生了什么 决策边界 或者我们应该叫它什么 是一种直线 像这样
+Now if you think about it, what, what's going on here, is that the decision boundary, or what are we going to call it, is sort of straight, like this.
+
+264
+00:28:40,890 --> 00:28:46,250
+在某种意义上 表示X2并不重要 因为如果你改变X2
+In some sense, indicating that X. Two doesn't really matter, because if you change X two.
+
+265
+00:28:46,880 --> 00:28:48,760
+概率不会改变那么多
+The probability is not going to change that much.
+
+266
+00:28:49,460 --> 00:28:54,900
+但是如果你改变X 1 你可以理解概率会发生很大的变化 对吧 所以如果你不得不
+But if you change X, one, you can understand that the probability will change quite significantly, right? So if you had to.
+
+267
+00:28:55,470 --> 00:29:01,350
+在这里跳一级 它就会升得更高 如果你往另一个方向跳一两步 就会减少很多
+Hop one step here, it would go up much higher. If you hop one or two steps on the other direction, it would reduce a lot.
+
+268
+00:29:02,940 --> 00:29:11,380
+这就是梯度要捕捉的东西 嗯 你们可以想想梯度会做什么 它会 它会朝那个方向 对吧
+This thing is exactly what the gradient captures, um, you can think about what the gradient will actually do, and it'll, it'll be facing that way, right?
+
+269
+00:29:11,830 --> 00:29:16,750
+所以梯度的方向 可以告诉你每个维度有多重要
+So the direction of the gradient, thus, can tell you how important each dimension is.
+
+270
+00:29:17,300 --> 00:29:24,860
+x的梯度值 这里的两个轴几乎是零 而对于x1 这是它聚焦的地方
+The gradient value for the x, two axis here is almost zero, whereas for X one, that's where it's focusing all of its.
+
+271
+00:29:27,440 --> 00:29:32,320
+我们接下来要做的就是把这位伟大的导演形象化
+Um, so what we then do is we take this great director and we visualize it.
+
+272
+00:29:32,860 --> 00:29:38,340
+嗯 用一些标准化的方法 我们不会讲太多的细节
+Um, using some normalization, and and we won't go into too much detail in the in, the sort of.
+
+273
+00:29:38,830 --> 00:29:44,670
+在C-I或数据可视化中 这是一部分 但是但是你有一个伟大的主管 在某种程度上使它正常化
+At C-I or data visualization, part of this, but but you take the great director, normalize it in some way.
+
+274
+00:29:45,270 --> 00:29:49,270
+这就是重要性所在 这就是我们之前展示给你们的
+And that's what the importance is, that's what we were showing you earlier.
+
+275
+00:29:50,480 --> 00:29:56,280
+好了 我们来深入研究一下 这是一个很好的漫画 但它是如何实际工作的
+Okay, so let's dig into this little bit. This is a nice cartoon, but how does it actually work practically.
+
+276
+00:29:57,270 --> 00:30:03,590
+本质上 我们说过我们在做的是我们在对一个特征求输出
+Uh, essentially, what we said we are doing is we are taking deerive of the output with respect to the to a feature.
+
+277
+00:30:04,820 --> 00:30:08,980
+在惩罚的情况下 我们所说的是对输入令牌的尊重
+In, in the case of penalty, what we are saying is the respect to an input token.
+
+278
+00:30:10,730 --> 00:30:16,570
+这意味着什么呢 实际上还有很多问题没有回答 所以我们将深入研究其中一些
+So what does that mean There are actually lots of questions that are unanswered, so we're going to dig into some of them.
+
+279
+00:30:17,040 --> 00:30:21,360
+当我们说模型输出的导数时
+When we say derivative of the output of the model, that's not quite, uh,
+
+280
+00:30:22,090 --> 00:30:29,450
+它不清楚 至少是模糊的 它可能是什么 例如 模型的输出是什么
+It's not clear, at least it's ambiguous, what it could be, so for example, what is the output of the model Is it just the.
+
+281
+00:30:30,250 --> 00:30:36,170
+最好的预测 概率 就像你需要一个数字 分数 还有
+Top prediction, probability, like you need one number to be taken, the grade, and also is it, you know.
+
+282
+00:30:37,190 --> 00:30:43,350
+从软mac中得到一堆概率 取决于你有多少类 它是顶部预测的概率
+Out of the soft Macs to get a bunch of probabilities, depending on how many classes you have, is it the probability of the top prediction.
+
+283
+00:30:44,730 --> 00:30:53,010
+也许你不想关心概率 也许你想关心住宿 因为当你考虑概率的时候东西被压扁了 这可能会影响事情
+Or maybe you don't want to care about the probability, maybe you want to care about the lodgets, because things got squashed when you do probability, and that might affect things.
+
+284
+00:30:53,860 --> 00:30:56,260
+很奇怪 我们稍后会看到一些例子
+Weirdly, and we'll see some instance of that later.
+
+285
+00:30:56,870 --> 00:30:59,830
+也许你想看看损失 因为预测
+Uh, maybe you want to look at the loss, because the prediction.
+
+286
+00:31:00,620 --> 00:31:09,780
+梯度不是你在训练时做的 所以可能损失是 有人考虑过这个问题并定义了损失 所以我们应该计算最上面的预测
+And the gradient is not what you do during training, so maybe the loss is, someone has thought about the problem and defined a loss. So we should be computing that for the top prediction.
+
+287
+00:31:11,080 --> 00:31:14,480
+和工作小组一样 对吧 然后取损失的梯度
+As as the job group, right? And then take the gradient of the loss, um,
+
+288
+00:31:15,370 --> 00:31:21,570
+还有一个问题是 当您有多个输出时会发生什么 如果你超越了分类
+There are also questions about what happens when you have multiple outputs. So if you go beyond classification.
+
+289
+00:31:22,180 --> 00:31:28,220
+如果你在做像生成文本或艺术标签之类的事情 你会怎么做
+If you're doing things like generating text or doing any art tagging, what do you do right?
+
+290
+00:31:29,110 --> 00:31:34,390
+所以这里有很多问题 尽管创新的输出在数学上听起来很精确
+So there's lots of questions here, even though innovative of output sounds mathematically precise.
+
+291
+00:31:36,260 --> 00:31:42,140
+还有一些关于输入标记的问题 对吧 说输入令牌很容易
+There are also questions that come in with what happens to the input token, right? It's easy to say input token.
+
+292
+00:31:42,840 --> 00:31:48,880
+但实际上 令牌是嵌入的 就像200维 300维不管你用的是什么
+But actually, the token is actually in embedding. It's like two hundred dimensional, 300 dimensional whatever you're using.
+
+293
+00:31:50,210 --> 00:31:56,890
+如何转换梯度 让我们把这300个数字分成一个标量分数
+How do you convert that gradient Let's spread over these 300 numbers into a scaler score?
+
+294
+00:31:57,820 --> 00:32:00,260
+你 你投射 啊 一种视觉
+You, you project, ah, an un, visualize.
+
+295
+00:32:01,220 --> 00:32:04,340
+你是不是把所有的都加起来了
+Um, do you just add all of it up Do you.
+
+296
+00:32:05,040 --> 00:32:11,440
+取它的一些 一些范数 比如 el做范数或者或者最大值范数 或者 你知道的
+Take the the some, some norm of it, like, you know, el do norm or or the Max norm, or, you know.
+
+297
+00:32:12,070 --> 00:32:19,110
+男人或者随便什么人 或者你应该服用含有植入物的深色产品 所以你应该取梯度
+Men or whatever you want to, um, or maybe you should take the dark product with the embedding itself. So you should take the gradient.
+
+298
+00:32:19,810 --> 00:32:21,730
+因为有一些
+And since the embiting has some.
+
+299
+00:32:22,650 --> 00:32:29,890
+值 例如 有些可能是正的 有些可能是负的 它们以不同的方式影响辐射
+Value to it, so, for example, some of those may be positive, and some of them would be neg- negative, and they affect radiants in in different ways.
+
+300
+00:32:30,570 --> 00:32:32,730
+也许请医生吃午饭更合理些
+Uh, maybe taking the doctor lunch makes more sense.
+
+301
+00:32:33,940 --> 00:32:41,100
+然后 当然 一旦你让每个代币有了最大的价值 你实际上要向用户展示什么
+Um, and then, of course, once you have the greatest value for each token, what do you actually show the user what.
+
+302
+00:32:41,770 --> 00:32:43,890
+它应该是多少橙色或多少蓝色
+How orange or how blue should it be?
+
+303
+00:32:45,270 --> 00:32:50,070
+这也是一个对用户看得清楚与否有巨大影响的问题
+That's also a question that actually has a huge impact on what the user sees clearly.
+
+304
+00:32:50,850 --> 00:32:54,410
+所以我想说的是
+Um, and so I guess what I would say is, um,
+
+305
+00:32:55,530 --> 00:33:02,370
+就什么选择更有意义而言 在很大程度上 人们甚至在惩罚之外也一直在关注这个问题
+In terms of what choices make more sense. And people have been looking at this even outside of penalty, to a large degree.
+
+306
+00:33:03,030 --> 00:33:05,310
+我们已经达成共识了
+And and the thing that we have sort of agreed on.
+
+307
+00:33:06,050 --> 00:33:14,930
+正确的做法是取损失的梯度相对于模型预测 你戴着这个L-Y的帽子
+Is the right thing to do is to take the gradient of the loss with respect to the model prediction. So you have this L-Y hat here, um,
+
+308
+00:33:15,680 --> 00:33:21,520
+你用这个梯度 相对于那个 一个损失 嗯 一个相对于他们的损失的分级 玛丽
+And you're taking that the gradient, with respect to that, a loss, um, a grading of the loss with respect to them. Mary.
+
+309
+00:33:22,230 --> 00:33:29,230
+然后为了计算它有多重要 你要计算与发射本身的狗乘积来得到一个标量值
+And then to compute how important it is, you do the dog product with the embiting itself to get a scaler value.
+
+310
+00:33:31,080 --> 00:33:36,880
+是的 这就是你如何计算你投射的成分 你计算你输入的所有符号
+Yeah, so that's how you compute the ingredients you projected, you computed for all of the tokens in your input.
+
+311
+00:33:37,490 --> 00:33:43,410
+你把它们规范化 形象化 然后你在地图上保持沉默 很容易做到 我们会讲到
+You normalize them somehow and visualize it, and and you have silence in maps, pretty, uh, easy to do, and we'll talk about.
+
+312
+00:33:44,460 --> 00:33:47,660
+之后你还可以在你的应用程序上解决这个问题
+Later how you can solve, do it on your applications as well.
+
+313
+00:33:49,260 --> 00:33:49,900
+但哦
+But uh.
+
+314
+00:33:51,590 --> 00:33:56,910
+不幸的是 或者说不幸的是 对于所有的研究人员来说 梯度并不像定义的那样有效
+Unfortunately, or unfortunately, for all the researchers, this gradient stuff doesn't quite work as as defined.
+
+315
+00:33:58,100 --> 00:34:03,700
+有几个问题出现了 我们开始看张力的梯度 我会讲一些
+There are couple of problems that come up, and we start looking at gradients for stency, and I'm going to talk about some of them.
+
+316
+00:34:04,680 --> 00:34:10,080
+它们不是完全独立的 它们是相互关联的 但研究它们非常重要
+Which are not quite completely independent, they're interrelated, but so important to look at them.
+
+317
+00:34:10,920 --> 00:34:15,320
+最大的问题之一是 根据定义 梯度
+So one of the biggest problems is that the gradient, almost, by definition,
+
+318
+00:34:15,950 --> 00:34:24,350
+往往是非常本地化的 它的意思是 当X的变化量趋于0时 它的极限趋于0
+Tends to be very, very local. Ah, what that means is that it's sort of looking at limit, tending to zero when it comes to the change in X.
+
+319
+00:34:25,330 --> 00:34:29,690
+所以它可以是非常特定的在一个非常局部的表面上发生的事情 对吧
+And so it can be extremely specific to what's going on in a very local surface, right?
+
+320
+00:34:30,710 --> 00:34:34,390
+这可能就是你想象的 模型输出的样子
+So this might be what you imagine, the model output actually looks like.
+
+321
+00:34:35,050 --> 00:34:42,930
+但在实践中 它可能看起来像这样 我不知道溪流是否捕捉到了它 但突然间 整个表面都很嘈杂
+But in practice, um, it might look something like this, and I don't know if the stream captures it, but now suddenly, the whole surface is quite noisy.
+
+322
+00:34:44,160 --> 00:34:51,680
+这意味着 如果你把鸡蛋稍微改变一下 你会得到非常不同的梯度
+And what that means is if you take your eggs and change it even slightly, you will get very different gradients.
+
+323
+00:34:52,450 --> 00:35:00,970
+对于你的原始输出 梯度可能看起来是一个方向 但如果你稍微改变一下 它可能看起来完全不一样 即使从更高的角度看
+Um, and so for your original output, the gradient might look one way, but if you change it slightly, it might look completely off, even though from a higher.
+
+324
+00:35:02,000 --> 00:35:08,000
+水平视图 事情并没有像这样改变 有一点噪音 但你仍然可以看到蓝色和红色 你仍然可以想象
+Level view, things haven't quite changed like this, a little bit of noise, but you can still see blue and red, and you still imagine.
+
+325
+00:35:09,280 --> 00:35:14,520
+梯度应该面向我们 应该面向某个方向 但单个的梯度可能不会反映出来
+The gradient should face us, should face a certain way, but an individual gradient may not reflect.
+
+326
+00:35:16,970 --> 00:35:17,090
+嗯
+Um,
+
+327
+00:35:18,980 --> 00:35:20,820
+也有问题 当你
+There is also problems when you are.
+
+328
+00:35:21,610 --> 00:35:30,210
+模型的输出会趋于饱和 UM 这可能会导致不直观的弧度 对吧 所以我现在要做的是给你们一个快速的
+The outputs of the models get saturated, UM, which can somehow lead to unintuitive cradients, right? So what I'm going to do here is give you a quick.
+
+329
+00:35:30,800 --> 00:35:35,840
+一维的 或者二维的问题 嗯 你的输出 为什么在这里
+One dimensional, or I guess two dimensional problem, um, where you're output. Why here.
+
+330
+00:35:36,580 --> 00:35:41,180
+在0和1之间有一定的概率 它被定义为已探索+X
+Goes between zero and one with some probability, and it's just defined as explored plus X.
+
+331
+00:35:41,850 --> 00:35:49,810
+好的 嗯 有一个临界值 当下一个1+x 2小于1 你就把它们加起来
+Okay, uh, with a sort of thresholding, so when it's when next one plus x, two is less than one, you just sum them up.
+
+332
+00:35:50,500 --> 00:35:55,780
+但如果X(1+6 2)大于1 你只需在1处达到饱和
+But if X, one plus six, two is more than one, you just threshold it at, um, are you saturated at one.
+
+333
+00:35:56,800 --> 00:36:05,040
+这就是如果X轴是外部影响 那么这个表面看起来会是这样的 当它在X轴以下时 接下来的两个 你会得到一条直线 当它在上面时 嗯
+And so this is what the surface would look like if X axis is external effects, to when it's below X, on the next two, you get a linear line, and when it's above, um,
+
+334
+00:36:05,810 --> 00:36:13,250
+第一 你得到一个平坦的 饱和的输出 对吧 你可以想象神经网络中的很多激活单元是这样的
+One, you get a flat, saturated output, right, and you can imagine a lot of activation units in neural networks look a lot like this.
+
+335
+00:36:14,540 --> 00:36:15,220
+通常要小很多
+Usually a lot smaller.
+
+336
+00:36:17,080 --> 00:36:23,120
+所以我们要做的是我们要看这一点即XON+x 2=2
+So what we're going to do is we're going to look at this point where XON plus x, two is equal to two, um,
+
+337
+00:36:24,110 --> 00:36:29,430
+也就是说X等于1 Extu等于1 假设 这就是我们要看的实例
+Which means that X, one is equal to one, and Extu is equal to one. Let's, let's say, that's the instance we're looking at.
+
+338
+00:36:30,350 --> 00:36:35,270
+现在 如果你能看到 输出很平坦
+Now at this point, if you can see, uh, the output is pretty much flat.
+
+339
+00:36:36,470 --> 00:36:42,910
+如果你对输出求梯度 它的梯度是0
+So if you take the gradient with respect to, um, the output, it's going to be the gradient is going to be zero.
+
+340
+00:36:43,760 --> 00:36:51,640
+事实上 问题比这更复杂 而且有点棘手 实际上不仅仅是梯度 如果你取其中一个
+In fact, the problem is even more complex than that, and a little bit tricky, where actually not just the gradient, but if you take even one of them.
+
+341
+00:36:52,440 --> 00:36:59,360
+把它们一直变换到0 因为另一个仍然是1 你仍然在这个平坦区域
+And change them all the way to zero, since the other one is still one, you will still be in this flat region.
+
+342
+00:36:59,960 --> 00:37:03,800
+所以在整个过程中 如果你只换一个
+And so during the whole process, um, if you just change one and.
+
+343
+00:37:04,610 --> 00:37:09,290
+改变很多 梯度还是0 嗯 看起来是这样的
+UM, change them a lot, the gradient will remain zero. UM, and so it will seem.
+
+344
+00:37:10,440 --> 00:37:18,760
+两者都不重要 对吧 x 1和x 2都不重要 因为为什么是1
+That neither is actually important, right? Neither x, one or x, two is important for why, um, for why Why is one.
+
+345
+00:37:20,800 --> 00:37:26,640
+但当然不是这样的 因为如果它们都是0 那么模型就会不一样 或者它们都小于1
+But of course that's not the case, because if both of them are zero, then the model will be different, or both of them were less than one.
+
+346
+00:37:27,610 --> 00:37:32,490
+太阳小于1 就会非常不同 所以这些东西会在饱和输出中丢失
+The sun was less than one, it would be very different, so these things gets lost in the saturated outputs.
+
+347
+00:37:33,830 --> 00:37:33,950
+哦
+Uh,
+
+348
+00:37:34,760 --> 00:37:41,640
+我们也可以看一个稍微不同的情况 有时激活单位可能有不连续的梯度
+We can also look at a slightly different case, where sometimes your activation units might have discontinuous gradients.
+
+349
+00:37:42,550 --> 00:37:45,830
+特别是如果你使用基于relos之类的阈值
+Especially if you're using thresholding based like relos and things like that.
+
+350
+00:37:46,490 --> 00:37:52,930
+这是一个单位输出的例子 这里有X 这是某个技能值
+So this is an example of what the output of a unit might look like, where you have X, that is some skiller value.
+
+351
+00:37:53,630 --> 00:37:59,150
+为什么X达到10时它是0 之后它变成线性
+And why that is zero till X reaches ten, after which it becomes linear.
+
+352
+00:38:00,890 --> 00:38:09,130
+再一次 这就是它的样子 如果你观察这个函数的梯度 你会发现在10之前 梯度绝对为零
+Again, this is exactly what a fellow looks like, if you look at the gradient of this function, um, you will see that before ten, the gradient is absolutely zero.
+
+353
+00:38:09,820 --> 00:38:12,220
+然后它就跳了一下 变成了一个
+And then it just hops and becomes one after.
+
+354
+00:38:15,040 --> 00:38:18,160
+如果你看看X周围发生了什么
+And so if you look at what's going on right around X.
+
+355
+00:38:19,070 --> 00:38:24,950
+你会看到 稍微高于10的 就会有氢化剂
+You will see that right, something slightly higher than ten, um, would have a really hydragant.
+
+356
+00:38:25,610 --> 00:38:32,970
+略低于10的数值会非常低 非常聪明 即使预测是 你知道 至少它是
+And something slightly lower than ten will have really low, brilliant, even though the prediction is, you know, at least it's a.
+
+357
+00:38:34,240 --> 00:38:39,520
+连续的 对吧 可能是不可微的 但它是连续的 对吧 嗯 所以
+Continuous, right? Maybe not differentiable, but it's, it's continuous, right? Um, and so.
+
+358
+00:38:41,580 --> 00:38:41,700
+嗯
+Um,
+
+359
+00:38:42,470 --> 00:38:50,870
+它的意思是 取决于你在哪里结束 你可以得到非常不同的梯度 同样 这只是一个单位 想象这发生在
+What what this means is like depending on where you end up, you can get very different gradients, and again, this is just a single unit. Imagine this is happening with.
+
+360
+00:38:51,360 --> 00:38:57,280
+你知道 在你附近的网络中有成千上万的单元 它在输出上的缺陷通常是
+You know, thousands or millions of units in your near network, um, what defect it has on the output is often.
+
+361
+00:38:59,270 --> 00:39:02,870
+好了 我们已经讨论了很多关于最终成分的问题
+Okay, so we've talked about a bunch of problems with final ingredients.
+
+362
+00:39:03,630 --> 00:39:09,990
+难道没有希望了吗 我们不应该使用渐变吗 事实并非如此 人们一直在关注这个问题
+Is there no hope? Uh, should we not use gradients at all? Um, that's not the case. People have been looking at this.
+
+363
+00:39:11,190 --> 00:39:16,870
+同样 主要是在NLP之外如何解决这些问题 因为很多问题都不是 问 要具体
+Again, primarily outside of NLP on how to fix these problems, because a lot of these problems are not. NL, be specific.
+
+364
+00:39:19,630 --> 00:39:19,950
+所以
+And so.
+
+365
+00:39:20,810 --> 00:39:29,010
+我们如何缓解这些问题 嗯 我认为其中很多 我仍然会说 是缓解策略 而不是完全解决问题的策略 但它们确实 嗯
+How can we mitigate these issues? Um, I think a lot of these, I would still say, are mitigation strategies rather than ones that completely solve it, but they do, um,
+
+366
+00:39:29,720 --> 00:39:35,240
+工作方式完全不同 而且在解决这些问题上更有效
+Work quite differently or and and are much more effective at fixing some of these problems.
+
+367
+00:39:36,200 --> 00:39:44,840
+我不打算讲所有的 但它们的基本原理是不依赖于单一的梯度 因为我们知道单一的梯度
+And I'm not gonna go into all of them, but the underlying, um way they all work is not to rely on a single grade, because we know a single gradient is.
+
+368
+00:39:45,440 --> 00:39:48,480
+这不是不可靠的 它是不可靠的
+Um, it's not unreliable. It is unreliable.
+
+369
+00:39:49,880 --> 00:39:56,320
+我们将会讨论两种方法 光滑岩壁和集成梯度 并简单地讨论一下
+So we're going to be talking about two methods, smooth crag and integrated gradients, and talk about them very briefly.
+
+370
+00:39:57,160 --> 00:40:05,960
+但我想说的是 还有很多其他的方法 其中一些在这里列出了 我们没有涵盖 对吧 如果你对这个感兴趣 还有很多工作要做
+But I do want to mention that there are lots of other approaches, some of them listed here, which we are not covering, right? So if you're interested in this, there's a lot of work.
+
+371
+00:40:06,940 --> 00:40:13,820
+主要是在计算机视觉中 它能做到这一点 所以让我们快速地给你们一个直观的印象 这些缓解策略是什么样的
+Mostly in computer vision, that does this, so let's quickly give you an intuition about what these mitigation strategies look like.
+
+372
+00:40:15,090 --> 00:40:21,450
+第一个药物策略是平滑 grant 这个想法就是在输入中加入一些谨慎 噪音
+The first medication strategy is Smooth, grant, where the idea is to just add some caution, noise to the input.
+
+373
+00:40:22,310 --> 00:40:30,470
+而平均 创造性 这是非常非常简单的 但本质上 当你想解释为什么X周围的决策面是什么样的
+And average, the creative, it's very, very simple, but essentially, when you want to explain why what the decision surface around X looks like.
+
+374
+00:40:30,990 --> 00:40:38,990
+所以只看这里的梯度 相反 你只需要做一些不同的禁忌来看看它们的梯度是什么
+And so just looking at the gradient there, instead, you just make a bunch of different prohibitions and see what the gradient was for all of them.
+
+375
+00:40:40,160 --> 00:40:46,120
+然后取加拿大的平均值 这就成为了鸡蛋周围情况的一个更可靠的指标
+And then you average the Canadian, and that becomes a more reliable indicator of what's happening around eggs.
+
+376
+00:40:47,630 --> 00:40:51,430
+特别是噪音被抵消了 这是有原因的
+Especially the noise stuff gets cancelled out, and and there are reasons why this is much.
+
+377
+00:40:53,610 --> 00:40:59,210
+这很直观 还有一个稍微不那么直观的版本
+So that's pretty intuitive. There's a slightly less intuitive version, which is also.
+
+378
+00:41:00,850 --> 00:41:04,130
+很好 实际上它也有很好的自由基性质
+Pretty nice and actually it comes with nice, radical properties as well.
+
+379
+00:41:04,790 --> 00:41:12,790
+这里不只是平均X周围的颗粒 而是从原点或参考实例创建路径
+Where instead of just averaging grains around X, what you do is you create a path from the origin or from some reference instance.
+
+380
+00:41:13,410 --> 00:41:20,730
+在这种情况下 我们把它想成 嗯 左下角的点一直到x 你想解释一下
+So in this case, let's think of it as this, um, bottom left point all the way to the x. You want to explain, so.
+
+381
+00:41:22,120 --> 00:41:26,920
+你知道 有一条线连接着从0到你想要解释的点
+You know, there's a line that connects going from zero, zero to the point that you want to explain.
+
+382
+00:41:28,020 --> 00:41:35,980
+你要做的是沿着这条路径取点然后用计算机梯度 而不是谨慎的 绕dex 你所做的就是你自己
+And what you do is you take points along this path and computer gradients, instead of cautionized, aroundex. What you do is you.
+
+383
+00:41:36,720 --> 00:41:45,120
+嗯 有一种策略是让加拿大人沿着点走 然后你可以把所有这些梯度加起来
+Um, there's the sort of a strategy where you take Canadians along the spot, and then you can take all of these gradients and sum it up.
+
+384
+00:41:46,460 --> 00:41:48,500
+让它得到一个方向或平均值
+And get it get a direction or average.
+
+385
+00:41:49,730 --> 00:41:57,850
+这就是你可以把它看作是积分成分的地方 因为它是对所有梯度值的这一部分做积分
+And that's where you can think of it as integrated ingredients, because it's taking an integration all over this part of all the gradient values.
+
+386
+00:41:59,610 --> 00:42:01,530
+好吧 总结一下
+Okay. So in summary, um,
+
+387
+00:42:02,490 --> 00:42:07,930
+这些基于交易的方法有很多优点 他们计算单个辐射的速度非常快
+There are lots of nice things about these trading based methods. They are extremely fast to compute the single radiant.
+
+388
+00:42:08,580 --> 00:42:11,820
+更好 并不比 落后 慢 嗯
+Better is no slower than another called the backward. Um.
+
+389
+00:42:13,660 --> 00:42:21,700
+但是 即使你做的是综合工作 而且顺利毕业 你知道 只是 向前和向后的十次调用 这并不太糟糕
+But e- even if you're doing integrated gig and so smooth grad, it's just, you know, ten calls to to forward and backward, which is not too bad.
+
+390
+00:42:22,380 --> 00:42:29,140
+它可以在视觉上很吸引人 它可以很好地传播重要性和价值 通常它不是
+Um, it can be visually quite appealing, it gives a nice spread of importance, values, often it's not like.
+
+391
+00:42:30,090 --> 00:42:36,450
+从某种意义上说 它给人一种柔和的感觉 从u i 的角度来看 可能是
+Harsh, um, like zero ones In some sense, it gives a softer, things, which, from a U. i. point of view, could could be, um,
+
+392
+00:42:37,640 --> 00:42:43,160
+好得多 我们之前说过也有不好的地方 但是
+Much nicer, um, there are sort of negatives as well that we talked about, but.
+
+393
+00:42:44,110 --> 00:42:52,270
+除此之外 我还会讲到一些其他的问题 嗯 首先 它需要白盒访问权限 也就是说 如果你没有
+Other than that, I'm going to touch on some other issues, um, firstly, it needs white box access, which means if you don't have that, uh,
+
+394
+00:42:53,320 --> 00:42:55,920
+用这些可能很难 对吧 至少 你需要把盘子放进去
+It might be difficult to work with these, right? At least, you need the plate in.
+
+395
+00:42:57,710 --> 00:42:59,590
+它也不是非常可定制的
+It's also not very customizable.
+
+396
+00:43:00,680 --> 00:43:06,040
+这意味着我们一直在讨论单个代币的小变化 嗯
+What that means is that we've been talking about small changes in individual tokens. Um,
+
+397
+00:43:06,810 --> 00:43:11,370
+这在某些应用中可能不是很有意义
+That might not necessarily be very meaningful in certain applications.
+
+398
+00:43:12,160 --> 00:43:13,200
+嗯 所以
+Um, and so.
+
+399
+00:43:14,040 --> 00:43:19,600
+你无法改变这一点如果你突然想要看一个角色的水平 即使发生了什么
+And then you can't really change that if you want to suddenly look at a character level, what's going on even though.
+
+400
+00:43:20,330 --> 00:43:24,330
+模型按照他说的去做 这不是很容易做到的 或者如果可能的话
+The model takes what he says, uh, that's not really easy to do, or if possible.
+
+401
+00:43:25,290 --> 00:43:26,930
+在某些情况下
+In some cases, um,
+
+402
+00:43:27,970 --> 00:43:36,130
+当你定义这个梯度的时候你隐式地使用距离函数我给你们展示的可视化是隐式的欧几里得 所以
+The distance function that you're implicitly using when you're defining this gradient and the the visualization I was showing you is implicitly euclidian. So.
+
+403
+00:43:37,850 --> 00:43:45,410
+这个空间对嵌入有意义吗这个叔叔是对的没有简单的方法来确定时间
+Does that space make sense for embeddings or not Is this uncle right And there's no easy way to sort of fix time.
+
+404
+00:43:46,440 --> 00:43:46,560
+哦
+Uh,
+
+405
+00:43:47,780 --> 00:43:53,020
+而且 就像我们说过的 当事情达到饱和或临界值时 评分可能是不直观的
+And also, like we talked about, gradings can be unintutive when things are saturated or thresholded.
+
+406
+00:43:54,220 --> 00:43:58,460
+并且会导致一些我们意想不到的事情
+And and can result in in sort of things that we wouldn't expect.
+
+407
+00:43:59,950 --> 00:44:06,190
+最后 如果你有非分类任务 比如 文本生成或者
+And finally, if you have A-A non classification tasks, like, you know, text generation or um.
+
+408
+00:44:07,800 --> 00:44:14,760
+即使是任何艺术标签 如何应用它也不是很明显 我们稍后会讨论一些问题
+Um, even any art tagging, it's not directly obvious how to apply this, and we'll talk about some of that issues later.
+
+409
+00:44:15,630 --> 00:44:22,710
+好吧 第二类问题 我认为有一个问题值得回答
+Okay. So the second category of, yeah, question, I think there's a question that's worth answering.

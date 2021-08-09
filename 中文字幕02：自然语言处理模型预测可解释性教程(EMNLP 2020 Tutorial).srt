@@ -1,0 +1,1964 @@
+0
+00:00:00,060 --> 00:00:05,460
+就像本地环境偏见 例如 在提问的时候 它会说时间到了
+Like a local context bias, so for example, on when questions, it says it's time about.
+
+1
+00:00:06,270 --> 00:00:13,070
+所以如果时间是一个很合理的答案 那么当你问一个问题时 一个合理的答案就会随之而来
+So if time about seems like a really reasonable answer, uh, a reasonable answer would follow when you ask a one question.
+
+2
+00:00:13,670 --> 00:00:14,910
+商场对这个很感兴趣
+And the mall was kind of picked up on this.
+
+3
+00:00:15,680 --> 00:00:23,080
+不幸的是 我们并没有依靠真正的推理来回答一个问题 而是用了 它的时间 这个短语
+And unfortunately, rather than kind of relying on, you know, sort of the true reasoning to answer one questions, it instead, kind of triggers on this phrase its time.
+
+4
+00:00:25,650 --> 00:00:32,770
+类似地 对于 为什么 这样的问题 它说 因为 因为 显然是 为什么 问题的答案的指示符
+Similarly, for something like a why question, it says, because of which is definitely an indicator that the answer to a why question is going to follow.
+
+5
+00:00:33,320 --> 00:00:40,360
+所以即使名词短语说的是菠萝披萨 这可能和为什么没有关系 嗯 它仍然会说那个丢失了 那是
+So even if the noun phrase says pineapple pizza, which might have nothing to do with the question about why, um, it's still going to say that's lost, that's.
+
+6
+00:00:44,070 --> 00:00:49,670
+好了 这基本上是一个解释你如何用问答模型 然后构建这些奇怪的 精心设计的句子
+Okay, so this was basically an explanation how you could take a question answering model and then build these kind of weird, crafted sentences.
+
+7
+00:00:50,430 --> 00:00:55,230
+然后Pokesock 分析它们 找出模型中存在的偏见或错误
+And then Pokesock, analyze them to figure out sort of what kind of biases, uh, or errors are present in a model.
+
+8
+00:00:56,270 --> 00:01:04,470
+幸运的是 这些适用于广泛的输入 这能教会你更多关于模型的知识而不是你所说的这些局部解释
+And fortunately, these kind of apply to a wide breadth of inputs, which kind of teach you more about the model than these kind of local interpretations that some, you're talking.
+
+9
+00:01:08,340 --> 00:01:12,020
+还有一件有趣的事 很多东西过去都是人工识别的
+And an interesting thing also is that a lot of this stuff has been identified manually in past.
+
+10
+00:01:12,880 --> 00:01:18,720
+例如 我有词汇偏见或地方背景偏见 就像我在前面提到的
+So for example, I have this kind of like lexical biases or local context biases, and like I was mentioning on the previous side, is that.
+
+11
+00:01:19,540 --> 00:01:27,340
+可解释性几乎是自动地给你免费的东西 所以你只需运行解释方法 找到这些规则 然后你分析它们 然后你马上就可以
+Kind of interpretability almost automatically gives you stuff for free, so you kind of just run the interpretation method, find these rules, and then you analyze them, and then immediately you can.
+
+12
+00:01:27,960 --> 00:01:28,880
+偏见的存在
+That biases exist.
+
+13
+00:01:32,620 --> 00:01:41,340
+好了 这就是这节课的全部内容 我将简要地谈谈这些决策规则在实践中如何运用的利弊
+Okay, so this is actually all we have for the section, I'm going to talk briefly about the pros and cons at a high level of kind of how these decision rules, uh, can be used in practice.
+
+14
+00:01:42,240 --> 00:01:48,720
+我认为这绝对是一个需要更多工作的领域 我刚刚发现 这里讨论了两种方法 锚和触发器
+Um, and I think this is definitely an area where there needs to be more works I just discovered, uh, discussed two methods here, anchors and triggers.
+
+15
+00:01:49,430 --> 00:01:58,470
+但这里肯定有很多事情可以做 我认为 就像有人问的 科威特的决策规则肯定会带来非常有用和可操作的东西 当他们完成
+But there's definitely a lot more that can be done here, and I think, as someone was asking, the Kuwait, like decision rules definitely lead to very useful and actionable stuff. When they're done.
+
+16
+00:02:01,470 --> 00:02:09,430
+正如我们所看到的 其中一个优点是 你可以识别全局错误 模型和数据集 这真的很棒 例如 注释工件可能就是一个例子
+So as we saw, one of the pros, that you can identify global bugs and models and data sets, which is really great. So for example, annotation artifacts might be one instance of that.
+
+17
+00:02:10,070 --> 00:02:18,470
+你可以去修正数据 缺点是很难找到广泛的 覆盖范围广泛的规则 这导致了高度具体的规则
+UM, which you might be able to go and fix in the data. The downside is that it's also hard to find broad, covered rules, and this leads to highly specific.
+
+18
+00:02:19,950 --> 00:02:22,390
+这些非常具体或无法解释的规则是不可行的
+And these highly specific or uninterpretable rules are not actionable.
+
+19
+00:02:23,490 --> 00:02:25,570
+我只讲这条线上的两个例子
+So I'll talk to just two examples on this line.
+
+20
+00:02:26,440 --> 00:02:34,680
+一个是非常具体的锚 如果你用18o 8 fortia just clipper center和设计
+So one would be this highly specific anchor that you see about, if you use an eighteen o, eight, fortia and just and clipper and center and design.
+
+21
+00:02:35,040 --> 00:02:40,880
+所以你得到了这种疯狂的长锚触发了电子分类决定
+So you get these kind of crazy long anchor that triggers the electronics classification decision.
+
+22
+00:02:41,770 --> 00:02:48,970
+比如一个主题分类数据集 或者你可能会得到一些锚点或一些触发短语 它们有一些完全无法解释的节拍 ETO
+Uh, in, like a topic classification dataset, or you might get some anchor or some trigger phrase that has some just completely uninterpretable beat, the ETO.
+
+23
+00:02:50,430 --> 00:02:56,910
+这两种情况下 作为一个人 你都不知道发生了什么 它们有点 过于具体或不可分割
+And both of these are cases when you don't really understand as a human what's going on, they're kind of like, overly specific or uninterporable.
+
+24
+00:02:57,760 --> 00:03:03,600
+这些都是不可行的 所以你可能一整天都在看 你不会真正弄清楚 真正潜在的问题是什么
+And these aren't really actionable, so you can look at this maybe all day, and you won't really figure out, okay, what is actually the underlying problem?
+
+25
+00:03:04,520 --> 00:03:10,640
+然而在某些情况下 你可能会幸运地看到 这个短语 我看了一下 结果发现数据实际上是高度相关的
+Whereas some cases you might get lucky and see, okay, this phrase, I took a look at it, and it turns out the data is actually highly correlated.
+
+26
+00:03:11,680 --> 00:03:14,480
+在这个短语中的一些错误 所以也许我可以用它来修复它们
+With some of the errors in this phrase, so maybe I can use that to fix them all.
+
+27
+00:03:15,290 --> 00:03:22,450
+但是很多时候 你最终会得到这些非常具体或难以理解的短语 这是我们应该在未来改进的主要事情之一
+Um, but a lot of times you do end up with these kind of highly specific or uninterpable phrases, and this is kind of one of the main things that we should look to improve in in some future.
+
+28
+00:03:26,270 --> 00:03:26,910
+好吧 所以
+Okay. So.
+
+29
+00:03:28,430 --> 00:03:33,470
+这是艺术教程的第一部分 所以我发现了引导预测的决策规则
+This ends the first part of art tutorial. So I discovered about decision rules that lead to prediction.
+
+30
+00:03:34,190 --> 00:03:43,070
+现在是早上9点或6点 对于我们来说 我想我们会有一些提问的时间 也应该会有一段休息时间
+At this point, it is nine or six A-M. For us, we're going to take, I guess some time for questions, and there's also supposed to be a break.
+
+31
+00:03:43,910 --> 00:03:51,190
+我想我们的计划是在二十四分钟后继续第二部分 但我们可能有点按计划进行了
+Um, I think the plan was to resume at in twenty four minutes for the second part, but we might be slightly upon schedule.
+
+32
+00:03:52,690 --> 00:04:00,890
+是的 所以我认为有 有一些问题是针对你的小组的 我们至少应该回答这些问题 然后决定我们是要公开问答还是
+Yeah, so I think there are. There are some questions specific to your section, we should at least take those, um, and then then decide whether we should have open Q-A or.
+
+33
+00:04:02,300 --> 00:04:03,660
+挖掘锋利的砖 嗯
+Digging sharp brick. Um,
+
+34
+00:04:06,600 --> 00:04:14,160
+是的 我想有一个问题 关于触发器的一些问题 比如 它取决于你把触发器添加到输入的什么地方吗
+Yeah, so I guess one question, some questions about triggers, is like, does it depend where you add the triggers to the input?
+
+35
+00:04:16,110 --> 00:04:19,150
+然后它说了什么 我猜他们用了一个分析
+And then what does it say about, I guess they use an analysis.
+
+36
+00:04:20,420 --> 00:04:28,180
+回答你的问题 我想 主要是 我说过把它插入输入的前面 嗯 但是你可以想象把它插入中间到最后 嗯
+Answer your question, I guess, mainly, I talked about inserting it into the front of the input, um, but you can imagine inserting it into the middle into the end, um?
+
+37
+00:04:29,090 --> 00:04:37,210
+我想 如果你的目标是调试 把它放在哪里并不重要 如果你最终会喜欢 分析这个短语 试图弄明白
+I guess in terms of, if your goal is debugging, it doesn't necessarily matter too much where you put it. If you're going to like, eventually, analyze the phrase to try to figure out.
+
+38
+00:04:37,920 --> 00:04:38,040
+嗯
+Um,
+
+39
+00:04:39,060 --> 00:04:47,860
+它为什么会产生空气 也许你把它放在哪里并不重要 但我想论文最初关注的东西 一堆 有点像这种对抗性的观点 如果你从这个角度
+Why it's causing an air, it might not necessarily matter where you put it, but I guess the original thing that paper was looking at, a bunch, was sort of like this adversarial perspective, and if you're taking that, then.
+
+40
+00:04:48,420 --> 00:04:50,380
+也许把它偷偷地插在中间的某个地方
+Maybe inserting it somewhere stealthily in the middle.
+
+41
+00:04:54,030 --> 00:04:58,390
+呃 我们 我想 我们还是先看看数字吧 嗯
+Uh, let's, I guess, let's stick to figures before we go to anchor. So um.
+
+42
+00:04:59,910 --> 00:05:08,070
+是的 有一些问题与这个事实有关 嗯 我想 嗯 名声 我要一个 是来自
+Yeah, there are some questions sort of related to the fact that, uh, I guess the one, I, uh, fame, I'll take one, is the one from.
+
+43
+00:05:09,450 --> 00:05:14,890
+会不会有一种普遍的触发搜索 总是去非学习区域的失落景观
+Will Jami one that universal trigger search, always go to non learn regions of the lost landscape?
+
+44
+00:05:15,920 --> 00:05:22,960
+如何限制触发器在域中的搜索区域 这个问题的版本 是的 这是一个很好的问题
+How to constrain the search regions where the trigger is in domain, the version of this question, but yeah, this is a great question, um,
+
+45
+00:05:24,030 --> 00:05:25,510
+但实际上有
+Yet there's actually been, um.
+
+46
+00:05:27,400 --> 00:05:30,080
+我想我可以回去 实际上有一些有趣的作品
+I guess I can go back. There's actually a couple of interesting works, uh,
+
+47
+00:05:31,100 --> 00:05:34,100
+呃 链接在这里 你们可以在幻灯片中查看 有两份文件
+Uh, linked here that you can check out in the slides. Uh, there's two papers.
+
+48
+00:05:35,310 --> 00:05:38,790
+通过姓氏歌曲 还有另一篇论文
+By little last name song, and there's also this other paper as well, um,
+
+49
+00:05:39,650 --> 00:05:45,170
+比如 我如何使用语言模型分数 让触发器更符合语法
+Which kind of look at, how can I maybe use language model scores, for example, to make the trigger more grammatical?
+
+50
+00:05:46,080 --> 00:05:54,560
+这种方式最终会产生这些看似可信的短语 有时甚至会产生彩色输入当你把它们写在前面时
+And this kind of ends up generating these phrases which are book plausible and sometimes actually produce chromatical inputs when you pen them to the front.
+
+51
+00:05:55,130 --> 00:05:56,850
+但还是会触发行为
+Uh, but still trigger the behavior.
+
+52
+00:05:57,640 --> 00:06:06,280
+所以我想 也许我们在这里的搜索程序 用简单的语言来说是很粗糙的 的确 你是对的 它可以引导到 丢失的风景的尴尬的地方
+So I think, maybe the search procedure we have here, which is really crude in just kind of flipping words, and indeed, you're right, it can steer into the like, awkward spots of the lost Landscape.
+
+53
+00:06:07,120 --> 00:06:13,520
+嗯 有可能的方法来修改搜索 让它更复杂 这样你就可以转向合理输入的方向
+Um, there is possible ways to modify the search, make it more sophisticated, where you can actually steer into the direction of plausible input.
+
+54
+00:06:16,240 --> 00:06:19,240
+是的 还有一个问题
+Yeah. And another question sort of on this.
+
+55
+00:06:20,640 --> 00:06:23,720
+我想问的是奥利弗的问题
+Few questions around this are the one I take is from Oliver.
+
+56
+00:06:24,400 --> 00:06:29,920
+呃 在训练数据中添加这些触发器使模型更健壮有意义吗
+UH, does it make sense to add these triggers once found to the training data to make a model more robust?
+
+57
+00:06:31,730 --> 00:06:35,970
+嗯 这是个好问题 嗯 这绝对是你可以做的事情 我认为这很有趣 嗯
+Yeah, that's a good question, um, that's definitely something that you could do, I think it's interesting, um,
+
+58
+00:06:37,180 --> 00:06:44,420
+我想之前没有人看过这个 但是如果你 举个例子 你可能会用这个短语 罚款的分区限制 和
+I don't think anyone has looked at this before, but it could be something cool were you, let's say, for example, just to be cleared, that you might take this phrase, zoning cap in fines. And.
+
+59
+00:06:44,760 --> 00:06:49,480
+可能会附加到一些例子中 并对它们进行重新培训 以确保在这些例子中保持积极的态度
+May be appended to a bunch of examples and retrained them all to make sure, stays positive on the on These instances.
+
+60
+00:06:50,410 --> 00:06:55,490
+例如 在自然语言推断中 这可能是超信息的 我们听起来所有这些数据集的偏见
+This might be superinformative, for example, in in natural language inference, where we sound all these data set biases.
+
+61
+00:06:56,310 --> 00:07:01,270
+也许添加一个触发短语 然后重新训练模型 使其不使用数据集偏差可能有助于泛化
+And maybe appending a trigger phrase, and then retraining the model to not use data set biases could be helpful for generalization.
+
+62
+00:07:05,720 --> 00:07:05,840
+嗯
+Um,
+
+63
+00:07:08,370 --> 00:07:13,930
+是的 有 我想想 有个让人满足的问题
+Yeah, there was. Let's see, um, there was one sort of gratification question from.
+
+64
+00:07:15,400 --> 00:07:20,600
+卢卡斯是主持人之类的 所以我想这就是我们要听到的 对于主播来说 这个问题
+Lucas on anchor type of things, so I think that's all we have to to hear. So for anchors, so this question about.
+
+65
+00:07:21,330 --> 00:07:26,770
+你有没有尝试过其他的方法我可以回答这个问题
+Uh, have you tried anything different from the E-D method that was presented So I-I can answer that.
+
+66
+00:07:27,450 --> 00:07:32,410
+贪心的方法主要是为了澄清 实际上 我们进行了波束搜索 我们正试图
+The greedy method was mostly for lustration. In practice, we have a beam search, and we're trying to.
+
+67
+00:07:33,280 --> 00:07:39,800
+探索一个更大的可能空间 然后在光束中选择一个似乎是最好的角度
+Explore a much larger space of possible things, and then picking the one in the beam that seems to be the best angle.
+
+68
+00:07:42,740 --> 00:07:42,860
+一个
+One.
+
+69
+00:07:46,090 --> 00:07:51,330
+嗯 有一个问题刚刚提出来了实际上很有用
+Uh, yeah, there's one question that just sort of came in that actually useful to address.
+
+70
+00:07:52,430 --> 00:07:56,790
+因此 准确地说 搜索锚点的起始点在其所在位置有效
+So accurately, a starting point to search for anchors valid in its locality.
+
+71
+00:07:57,590 --> 00:08:04,910
+触发器建立在整个数据集上 这是正确的吗 是的 这种不同塑造了他们吗 这意味着什么
+Triggers are built on the whole data set. Is this correct? Yes, does this different shape them, and what does that mean?
+
+72
+00:08:07,130 --> 00:08:09,250
+你回答你的问题了吗 是啊 我要接这个
+Do you answer your question? Yeah, do I take this.
+
+73
+00:08:10,500 --> 00:08:11,780
+我想去拿这个吧 是的 所以
+Go for to take this, I guess. Yeah. So.
+
+74
+00:08:12,140 --> 00:08:20,540
+对 就像名称锚认为是一个很好的 就像一个描述实际上想要思考它 它有点像锚预测局部围绕一堆例子
+Yeah, like the name anchors think is a good, like a description of actually want to think about it, it sort of like anchors the prediction locally around a bunch of examples.
+
+75
+00:08:21,200 --> 00:08:27,240
+但实际上 它只是集中在这一点上 就像一堆例子或者随便你怎么叫它 这是对原作的最终演绎
+But indeed, it's only kind of focusing on this, like ball of examples or whatever you want to call it. That is finally a pertivation from the original.
+
+76
+00:08:27,980 --> 00:08:31,140
+然而 是的 糖在整个训练中都起作用
+Whereas yeah, sugars is a design to work across the whole training set.
+
+77
+00:08:31,950 --> 00:08:36,830
+翻转所有的例子 所以在某种意义上 它所影响的输入有更多的多样性
+And flip all the examples. So in some sense, there's more diversity in the inputs that it affects.
+
+78
+00:08:38,350 --> 00:08:47,190
+但在某些情况下 它可能没有实际模型那么精确 在实际模型中 你只能得到大约40%的精确预测 而锚可能会说 好吧 99%的预测
+But in some cases, it might be less precise to the actual model, where you only get stuff like maybe 40% of precision predictions flip, whereas anchors might say, okay, 99% of Predictions.
+
+79
+00:08:51,880 --> 00:08:54,840
+是的 嗯 好吧 嗯
+Yeah, um, okay. Um.
+
+80
+00:08:57,350 --> 00:09:03,710
+这部分投票的人不多 我想有一个问题
+There aren't that many other voted ones, um, for this section, I guess there's one question that, um.
+
+81
+00:09:06,120 --> 00:09:12,480
+我认为 也许我们有点太过保守了 但问题是 锚似乎指出了数据的偏差
+Maybe we're transisting a little bit to the open key, I think, but the question is, it seems like anchors point out to the biases of the data.
+
+82
+00:09:13,150 --> 00:09:16,710
+你能举个例子说明锚指向模型中的问题吗
+Can you give an example where the anchor points to problems in the model?
+
+83
+00:09:17,910 --> 00:09:24,270
+总的来说 我想问题是 数据和模型之间有什么区别
+And in general, I guess the question is, what is the difference between data and model, and uh,
+
+84
+00:09:25,350 --> 00:09:31,390
+对数据来说 偏差意味着什么 模型中的问题和其他问题有什么不同
+What does it mean for biases to be the data What is problems in the model and other even different from each other?
+
+85
+00:09:33,610 --> 00:09:35,650
+是的 我想这是一个很好的问题
+Yeah, this is a great question, I think, yeah, I guess.
+
+86
+00:09:36,840 --> 00:09:41,760
+是的 肯定很难 我把很多东西叫做数据集偏差 但你也可以争辩说 它可能是模型集 嗯 模型偏差
+Yes, definitely hard. I've been calling a lot of the stuff dataset bias, but you could also argue, it's maybe model set, uh, model bias.
+
+87
+00:09:43,340 --> 00:09:52,060
+我认为很难区分数据和模型之间的区别 当然 模型是根据数据训练的 所以这有点像是紧密的相互耦合
+I think there's a really hard time like having a clean distinction between what do the data and what's do the model, of course, the models trained on the data, so it kind of like is a tight intercoupling.
+
+88
+00:09:52,710 --> 00:10:00,430
+我认为一般来说 对于可解释性方法来说 这真的很难说 就像一般的稳健性 错误在哪里 是数据还是模型
+And I think it's really hard to say in general, for interpretability methods, and just kind of like robustness in general is like, where what is that fault Is it actually the data or the model.
+
+89
+00:10:01,020 --> 00:10:08,260
+特别是 例如 在这个人工制品的例子中 当这些特征确实与标签相关时
+Um, especially, for example, in things like this artifact case, when indeed these features are actually correlated with the label.
+
+90
+00:10:08,700 --> 00:10:15,340
+所以你不能责怪模型说 我使用词汇重叠作为一个特性 因为这在数据集上确实是一个很好的特性
+So you can't necessarily blame the model for saying, I use lexical overlap as a feature, because that actually is really good feature on the dataset.
+
+91
+00:10:16,740 --> 00:10:22,820
+所以 有时候我不知道是否应该称之为 比如电重叠偏差 这是模型中的问题 还是数据中的问题 这绝对是一件很难回避的事情
+So in, sometimes I don't know whether to call, like electrical overlap bias, is that an issue in the model, or is that an issue in the data It's definitely a hard thing to disintent.
+
+92
+00:10:24,170 --> 00:10:30,050
+我想我们可以更具体一点如果我们使用最大似然估计
+I guess I think we can be even a little bit more specific and say that if we're using maximum likelihood estimation,
+
+93
+00:10:30,860 --> 00:10:37,020
+为了得到一个模型 试图增加我们看到的训练数据的概率
+To to get a model that tries to increase the probability of the training data that we see.
+
+94
+00:10:37,920 --> 00:10:46,000
+模型实际上是数据本身的降维 就像这样 这就是我们的学习目标
+Than what the model is is effectively some dimensionality reduction on the data itself. Like that, that's what our learning objective does.
+
+95
+00:10:47,310 --> 00:10:53,230
+所以如果我们成功实现了这个学习目标 模型的偏差基本上就是数据的偏差
+And so if we're successful in that learning objective, the biases of the model basically are the biases of the data.
+
+96
+00:10:53,900 --> 00:10:59,140
+有一些注意事项 比如预训练的作用 但也许
+Um, there there are some caveats like with what pretraining does, but maybe.
+
+97
+00:11:00,470 --> 00:11:08,350
+我们必须想出一些除了最大可能估计之外的东西来得到数据偏差和模型偏差之间的巨大差异
+We'd have to come up with something other than maximum likelihood estimation to get a strong difference between biases in the data and biases in the model.
+
+98
+00:11:09,140 --> 00:11:10,420
+你同意吗 萨米尔
+Would would you agree with that Samir.
+
+99
+00:11:11,260 --> 00:11:14,580
+是的 是的 我同意 我想 从实际角度来说
+Yeah, yeah, I would agree with that, I guess, I think, just practically speaking.
+
+100
+00:11:15,570 --> 00:11:18,090
+Oppo将你说的话付诸实施的方法是
+The way to Oppo operationalize what you said is to.
+
+101
+00:11:18,840 --> 00:11:24,440
+看看模型之间的解释 触发点或锚点 看看它们有多一致
+Um, look at explanations or triggers or anchors across models and see how consistent they are.
+
+102
+00:11:25,050 --> 00:11:30,690
+嗯 至少这样 我想埃里克 我们做了 我们做了很多spitriggers 对吧 我们看到
+Um, and at least that way, so I think Eric, we did, we did a bunch of the spitriggers, right? We saw that.
+
+103
+00:11:31,150 --> 00:11:39,270
+即使你正确地改变了建筑和说教方式 从Elmo到Noelmo再到bird
+Even if you substantially change the architecture and the preaching mode rightly, you go from Elmo to Noelmo to bird, um,
+
+104
+00:11:40,080 --> 00:11:44,360
+我想很多诱因都转移了 这清楚地表明了
+I think a lot of the triggers transfer, which clearly indicate the the.
+
+105
+00:11:46,760 --> 00:11:55,200
+训练数据中的问题 但你也可以想象可能有触发器在所有的鸟类中传递 微调模型 在不同的任务中 也许
+The problems in the training data, but you can also imagine there may be triggers that transfer across all bird, fine tuned models, across different tasks, maybe.
+
+106
+00:11:56,350 --> 00:11:59,790
+这可能表明鸟有更多的问题 而不是没有得到它
+Which may indicate more problems with bird rather than with the didn't get it.
+
+107
+00:12:00,820 --> 00:12:05,540
+但我确实认为 至少在理论上 有可能得到一个模型
+But I-I-I do think that it, it's at least possible in theory, to get a model that.
+
+108
+00:12:06,540 --> 00:12:12,660
+火车使用相同的数据 但不受任何偏见的影响 因此触发器不会转移
+Trains using the same data, but is not as affected by whatever biases there are, such that triggers wouldn't transfer.
+
+109
+00:12:13,750 --> 00:12:22,070
+所以并不是数据本身 而是数据和最大似然估计的结合导致了这个结果
+And and so it's not the data itself, it's the combination of data and maximum likelihood estimation that that causes this, yeah,
+
+110
+00:12:23,690 --> 00:12:29,250
+是的 我想我提到过测试的方法就是看到它 对吗 是吗
+Yeah, I guess I was mentioning the way to test that would be to see it right? Yes?
+
+111
+00:12:30,590 --> 00:12:36,350
+好的 如果我们还有其他问题与第二部分或任何与脚无关的部分 现在也问
+Um, okay, also, if we have other questions disrelated to like section two or any sections for a foot, ask now as well.
+
+112
+00:12:37,470 --> 00:12:39,110
+是啊 我只是想看看有没有
+Yeah, I'm just trying to see if there are.
+
+113
+00:12:39,930 --> 00:12:44,770
+很少有操作过的 但是 是的 有一个我想确实是我们刚刚讨论过的
+Few operated ones, but, yeah, so there's one that I guess is indeed what we just talk about somewhat.
+
+114
+00:12:45,590 --> 00:12:51,310
+桑德罗说 有没有像国际米兰那样的东西 能激发一致性通常是这样的
+Uh, from Sandro, is there something like Inter, trigger consistency Usually that is, does.
+
+115
+00:12:52,020 --> 00:13:00,860
+在哪里纽约哪里经常表现在学习到哪里洛杉矶哪里就这样 我想即使在做排序的时候也不重要你放了什么
+Where New York where where often behaves in learning to where Los Angeles where where so. I guess even when you're doing the sort doesn't matter what you're putting in.
+
+116
+00:13:03,030 --> 00:13:10,430
+是的 我想在这里我描述的是一种一般的 嗯 原始作品是看 嗯
+Yeah, I guess in this I was describing a kind of generally, um, the original work was looking at, um,
+
+117
+00:13:11,570 --> 00:13:19,130
+只是放大一个特定的短语 而不是说 像一个任意的城市 你实际上会想 决定 嗯 纽约 我认为其中一件有趣的事情是
+Just bigging a specific phrase rather than saying, like an arbitrary city, and you would actually like, decide on, uh, new York. And I think one of the interesting things was that.
+
+118
+00:13:19,900 --> 00:13:24,300
+如果你只是创造了一些写着纽约的东西 然后在事实发生后把洛杉矶换掉
+If you just create something that says New York in it, but then just swap out L-A after the fact.
+
+119
+00:13:25,130 --> 00:13:31,890
+即使在生成过程中没有使用la 它仍然是有效的 它仍然导致 模型说 L-A是答案
+Even though L-A was not used at all during the generation process, it's still effective. It still causes, the models, say, L-A is the answer.
+
+120
+00:13:32,780 --> 00:13:34,500
+所以我认为这是一种表现
+So I think that kind of shows like that.
+
+121
+00:13:35,300 --> 00:13:43,820
+一般来说 这个短语会导致模型触发那个城市的名字 但它不一定是特定于纽约这个词的 它实际上只是特定于这个事实
+In general, this, this phrase cause the model to trigger on that city name, but it's not necessarily specific to the word New York, it's actually just specific to the fact that.
+
+122
+00:13:44,490 --> 00:13:53,050
+城市名 但你可以想象 在生成过程中 比如交换不同的城市名让触发器健壮地选择不同的城市名 好吧
+City name, but you can imagine, like, during the generation process, like swapping out different city names to make the trigger robust to bunch of different choices for the city names. Well,
+
+123
+00:13:57,160 --> 00:13:59,560
+关于物流的一点小说明 也许我们应该
+A little note on logistics. Perhaps we should just.
+
+124
+00:14:00,320 --> 00:14:08,760
+继续 跳过我们的休息 继续 我的意思是 我们有一大堆问题 我们可以在开始之前把问题一遍一遍 我们要重新开始了
+Keep going and skip our break, and by keep going, I mean, we have a ton of questions, we can just go through the questions until we start. We're officially supposed to Restart.
+
+125
+00:14:09,060 --> 00:14:10,420
+太平洋时间9 30
+At 9:30 Pacific time.
+
+126
+00:14:11,700 --> 00:14:15,020
+不过 对每个人来说 这仍然是积极的倾听
+Um, though, for everyone, that's still actively listening.
+
+127
+00:14:15,680 --> 00:14:21,960
+我们会关注这些问题 那些得票最多的问题 如果你长大了
+We will be looking at these questions, the the ones that are voted up most, and so if you grew, uh.
+
+128
+00:14:23,010 --> 00:14:28,210
+向上脚的信号很好 这是一个很好的信号 让我们知道我们应该回答什么 所以 嗯
+The up foot signal is very good, uh, is a very good signal for us to know what we should actually be answering. So it, um,
+
+129
+00:14:28,920 --> 00:14:32,440
+请去斯雷托酒吧 也许你会在火箭聊天时重新链接到它
+Please, uh, go to the Slighto, maybe you will re link to it in the rocket chat.
+
+130
+00:14:33,140 --> 00:14:39,140
+也许在这里也可以 这样你就能找到往上爬的地方 所以我们知道当我们回答问题时应该关注什么
+And maybe in here, too, so you can find where to go upfoat. So we know what we should focus on when we're taking questions.
+
+131
+00:14:44,290 --> 00:14:44,410
+什么
+What.
+
+132
+00:14:50,200 --> 00:14:50,320
+我
+I
+
+133
+00:14:54,810 --> 00:15:01,770
+那么我们现在就从上面开始吧 我想有一些问题会在本教程的后半部分讨论
+So should we just start from the top now, I guess there are a few of these that are that that will be addressed in the second half of this tutorial.
+
+134
+00:15:02,610 --> 00:15:10,530
+对于这些 我们应该等等 但是其他的 我们应该从上面开始 然后往下 也许有人想分享Sido的演示者模式
+And so for those, we should probably wait, but anything else, we should probably just start from the top and go down. Maybe someone want to share the presenter mode of Sido.
+
+135
+00:15:11,500 --> 00:15:11,620
+好吧
+Okay?
+
+136
+00:15:20,260 --> 00:15:21,340
+他是个好人 啊
+He was the good, ah,
+
+137
+00:15:27,610 --> 00:15:27,730
+所以
+So.
+
+138
+00:15:33,680 --> 00:15:34,200
+你能看到这个吗
+Can you see this.
+
+139
+00:15:42,020 --> 00:15:43,100
+我们想从哪一个开始
+Which one do we want to start with?
+
+140
+00:15:44,380 --> 00:15:50,900
+所以前两个问题会在最后得到回答 我会讲很多关于开放问题和评估指标的内容
+So first two questions will be answered at the end, I'll talk a lot about this if the open problems and evaluation metrics as well.
+
+141
+00:15:53,290 --> 00:15:56,610
+我想我要第三个 呃 那个
+I guess I, I'll take the third one, um, the.
+
+142
+00:15:57,870 --> 00:16:05,950
+我回答这个问题的方法是 给你们看两篇论文 一篇叫做注意力不是解释 另一篇叫做注意力不是解释
+What I had, the way I would answer this question, is to point you to two papers, one that's called attention is not explanation, and one that's called attention is not not Explanation.
+
+143
+00:16:07,130 --> 00:16:13,530
+他们一起试着回答其中的一些问题 一个 一个
+Um, they collectively try to answer some of this question, um, one, one.
+
+144
+00:16:14,610 --> 00:16:17,410
+我会很快给你答案的 这是一种关注吗
+Way that I would give a very quick answer. Is that an attention.
+
+145
+00:16:18,430 --> 00:16:20,590
+可视化本质上是一个缩放图
+Visualization is essentially a scalency map.
+
+146
+00:16:21,350 --> 00:16:28,070
+所以它不是 我们讲过的是基于梯度的计算显著性地图的方法
+And so it's not. It's the ones we talked about were gradient based methods for computing saliency maps.
+
+147
+00:16:28,240 --> 00:16:33,360
+所以问题是 基于评分的方法和基于注意力的方法有什么不同
+And so the question is, really, how do grading based methods compare to attention based based methods and.
+
+148
+00:16:34,420 --> 00:16:40,820
+回答这个问题需要的时间比我想在这种格式下做的要长得多 但是那两篇论文
+Answering that question takes a lot longer than what I would want to do in this format. But those two papers.
+
+149
+00:16:41,560 --> 00:16:47,560
+好好讨论一下这个区别 简而言之 他们会给你不同的东西
+Give a pretty good discussion of this difference. And the, the short answer is they give you different things, um, and.
+
+150
+00:16:48,510 --> 00:16:54,070
+在某些情况下 你可能想要信任其中一个或另一个 或者他们 他们回答不同的问题
+There are some circumstances where you might want to trust one or the other, or they. They answer different questions.
+
+151
+00:16:55,590 --> 00:16:55,710
+好吧
+Okay?
+
+152
+00:16:57,680 --> 00:17:00,640
+嗯 我想下一个 也许
+Um, so the next I think one, maybe.
+
+153
+00:17:01,980 --> 00:17:05,780
+这是一些不受欢迎的例子
+I can take this, so this is about the undesirable examples, um,
+
+154
+00:17:06,730 --> 00:17:09,890
+以及为什么它们是很好的解释 所以
+And sort of why they are actually good explanations. So.
+
+155
+00:17:10,980 --> 00:17:18,420
+具体来说 并不是另一种解释 仅仅是 女人 这个词的出现就导致了对她的保护 我们可以用
+Specifically, isn't an alternative explanation, that just the presence of the word woman is leading to her protection. We could replace any of the words with.
+
+156
+00:17:19,320 --> 00:17:24,400
+嗯 这是一个公平的观点 我想在城市的例子是有效的
+Um, that, that's a fair point, and I guess the the way at the city examples are working.
+
+157
+00:17:25,220 --> 00:17:30,700
+是为了找到和女人在一起的最佳场所 对吧 所以
+Are to, um and to find the best place to with women, right? So the.
+
+158
+00:17:32,100 --> 00:17:33,220
+就靠这个 他
+And depending on that was, he.
+
+159
+00:17:34,760 --> 00:17:42,400
+您使用的自动化技术 以及它如何定义最接近的更改 你可以想象 在某些情况下 它们只是约束自己
+Autobation technique you use, and how it defines the nearest change. You can imagine, there are cases where they only constrain themselves to be.
+
+160
+00:17:43,280 --> 00:17:49,200
+非常正确的是 也有一些方法试图在语义上与原始实例相似
+Dramatically correct, there have been methods that try to be semantically similar to the original instance as well.
+
+161
+00:17:50,110 --> 00:17:54,470
+所以他们试图找到的是最有效和最自然的地方
+So what they try to find is what is the most effective and natural place to.
+
+162
+00:17:56,100 --> 00:18:04,180
+但是女人 在这种情况下 我们不是在自然的部分 我们只是在最好的地方 大多数时候 它最终是
+But woman, and in this case, we weren't during the the natural part, we were only doing the best place, and most of the time, it ends up being the place where.
+
+163
+00:18:04,790 --> 00:18:10,270
+它离我们最近 所以现在变成了雌性
+Um, it was most near, and therefore now becomes most female.
+
+164
+00:18:25,640 --> 00:18:27,040
+马修 安静点 我想你
+Oh, matthew, muted, I think you.
+
+165
+00:18:30,130 --> 00:18:36,210
+抱歉 我要回答这个问题 为什么那么为什么你会相信一个产生理论基础的模型呢 嗯
+Sorry, um, so I'll take this question, why so why would you trust a model that generates a rationale? Um,
+
+166
+00:18:36,920 --> 00:18:39,040
+作为另一个输出 为什么这是有价值的
+As another output, why would this be valuable.
+
+167
+00:18:40,050 --> 00:18:48,170
+嗯 我 嗯 也许你们中的一个去找萨米尔 或者对这些方法有积极的看法 嗯 我的
+Um, I, well, maybe one of you to Samir, or has a positive opinion of these methods, um, my.
+
+168
+00:18:49,340 --> 00:18:54,180
+我同意这个问题的前提 我找不到理由
+I agree with the premise of this question, that I-I don't see a reason, um,
+
+169
+00:18:55,170 --> 00:19:01,250
+期望生成的理论基础与所做的预测有任何关系 嗯
+To expect that a generated rationale has anything to do with the prediction that was made. Um,
+
+170
+00:19:02,300 --> 00:19:07,940
+但是 作为一个不太关注这些方法的人 我想说的是 也许
+I, though, I do say that as someone who is not focused on these methods, particularly much, and so perhaps.
+
+171
+00:19:08,590 --> 00:19:13,390
+真正发表这些文章的人会跟我争论 但是
+Um, someone who actually publishes on this stuff would would quibble with me, but um.
+
+172
+00:19:14,590 --> 00:19:17,430
+我没怎么看过这些 因为
+I-I haven't looked at these all that much, because.
+
+173
+00:19:18,620 --> 00:19:26,860
+在生成的理论基础和模型做出的完全独立的预测之间 我看不到任何因果关系 所以我不知道这有多大的信息量
+I don't see any causal link at all between a generated rationale and a totally separate prediction that a model makes, and so I don't know how informative this is.
+
+174
+00:19:29,210 --> 00:19:33,250
+我同意你的很多观点 我想我会这么说
+Um, I-I agree with a lot of that, I guess what I would.
+
+175
+00:19:33,970 --> 00:19:37,930
+试着回答 这是动力如此迅速和有价值吗
+Try to answer, is that powered such a rush and be valuable?
+
+176
+00:19:39,720 --> 00:19:46,400
+我觉得 即使第一个问题的答案是 你不应该相信它 第二个问题可能仍然有价值
+That I feel is, even if the answer to the first one is, you should not trust it, the second one might still be valuable, um,
+
+177
+00:19:47,070 --> 00:19:48,270
+所以在某些情况下
+So there may be cases where.
+
+178
+00:19:49,060 --> 00:19:56,820
+用户必须在查看预测并获得更多关于上下文的信息后进行决策
+A user has to perform some decision making after looking at the prediction and having more information about the context or about.
+
+179
+00:19:57,450 --> 00:19:59,010
+嗯 什么 发生了什么
+Um, what? What's going on.
+
+180
+00:19:59,720 --> 00:20:07,440
+当对模型的忠诚不是标准的时候 这是有用的 你只是想要一些东西
+Um, could be useful where the faithfulness to the model is not necessarily the criteria. You just want something to, um,
+
+181
+00:20:08,340 --> 00:20:17,100
+来帮助你弄清楚在这种情况下发生了什么 所以我可以想象提供这个 在这些情况下它会非常有用
+To help you figure out what's happening in this situation, and so I could imagine providing that. Now it could be pretty useful in those cases.
+
+182
+00:20:17,660 --> 00:20:25,180
+有时你甚至可以想象得出理论依据比预测本身更重要 如果用户是我们的决定
+And sometimes you can even imagine producing rationale is more important than the prediction itself. And and if the user is the one, we think the decision.
+
+183
+00:20:25,770 --> 00:20:27,450
+也许他们更关心理性水平
+Maybe they care more about the rational level.
+
+184
+00:20:29,270 --> 00:20:34,750
+是的 这些都是我完全同意的观点 你也让我想起了一些重要的事情
+Yeah, that's those are totally fair points that that I agree with, and you also made me remember something that's important to note here.
+
+185
+00:20:35,270 --> 00:20:38,830
+贝里奇·施瓦兹最近发表了一篇论文
+Um, berridge Schwartz had a paper recently where.
+
+186
+00:20:39,780 --> 00:20:41,660
+她提出了一个理由
+She generated a rationale.
+
+187
+00:20:42,540 --> 00:20:50,140
+然后把它作为另一个 在产生一个预测之前 产生一个基本原理 把它作为模型的额外输入来完善它的预测 本质上
+And then gave that as another, before generating a prediction, generate a rationale, give that as additional input to the model to refine its prediction, essentially,
+
+188
+00:20:51,130 --> 00:20:59,090
+与萨米尔所说的相关 你有可能检索到或产生幻觉 得到一些有用的信息
+And so related to what Samir said, it's possible that you can retrieve or otherwise hallucinate some useful information.
+
+189
+00:21:00,110 --> 00:21:04,790
+在你做出预测之前 这对模型本身也很有价值
+In the form of this rationale before you make a prediction. And then it could be valuable to the model itself.
+
+190
+00:21:05,380 --> 00:21:12,980
+除此之外 正如辛格所说 其基本原理可能是价值 它本身也可能是预测目标 当然 这绝对是有价值的
+In addition to, as Singer said, the rationale might be value, it might be the prediction target in its own right. And then sure, that's that could definitely be valuable.
+
+191
+00:21:14,480 --> 00:21:20,360
+我想与此相关的是 也许我们今年早些时候的研究表明了这一点
+I guess related to that, maybe we have this work earlier this year that showed that.
+
+192
+00:21:21,320 --> 00:21:26,640
+作为注释 rationalts也可以帮助您的模型专注于特定的事情
+As annotations, rationalts could also be useful to to help your model focus on specific things.
+
+193
+00:21:27,800 --> 00:21:34,960
+如果一个模型产生了它 这可能是一个好的循环 那是经过批注的 抓住了理由
+And and maybe if a model produces it, that could be a good in the loop sort of thing. That's over an annotated, seize the rationale.
+
+194
+00:21:35,760 --> 00:21:39,160
+也许这能帮助他们找到管理的方法 似乎更好
+Maybe it helps them figure out how to manage it. It seems better.
+
+195
+00:21:48,500 --> 00:21:50,780
+有几个问题
+Um, there have been a few questions that are.
+
+196
+00:21:51,870 --> 00:21:57,590
+我晚一点来 但可能还没机会联系 所以每个人都应该
+That I've come in later, but maybe haven't had a chance to get a hold. So everybody should probably.
+
+197
+00:21:59,380 --> 00:22:01,260
+看看那些 如果你没看过的话
+Take a look at those, uh, if you haven't.
+
+198
+00:22:03,320 --> 00:22:03,760
+我可以看到
+I can see.
+
+199
+00:22:06,600 --> 00:22:09,320
+是的 我想我可以 我想可以
+Yeah, I guess taking the, yeah, I can take this one, I guess so.
+
+200
+00:22:10,930 --> 00:22:18,610
+我想这里有一件事 这看起来很像一个案例 也许做一些挑战它 等等 行为测试可能是有用的 如果你真的喜欢
+I guess one thing here is that this definitely seems like a case when maybe doing some sort of like challenged it, cetera, behavioral testing could be useful, were you actually like.
+
+201
+00:22:19,360 --> 00:22:21,080
+也许你的验证集是基于
+Maybe split your validation set based on.
+
+202
+00:22:21,970 --> 00:22:28,250
+比如 假设你在做提取总结 你是 最后 确定这个模型中存在的leadbias
+Um, like, let's say you're doing extractive summarization, and uh, you're one of, like, end, identify this lead bias that the model has.
+
+203
+00:22:28,870 --> 00:22:33,350
+你可以把你的验证集分成不同的部分 这是一组句子
+Um, you might split your validation set into different pieces, where okay here's the set of sentences where.
+
+204
+00:22:34,020 --> 00:22:39,300
+第一个句子实际上是最重要的 然后这里有一组例子 后面的句子更重要
+The the first sentence is actually the most important, and then here's a set of examples where a later sentence is more important.
+
+205
+00:22:39,910 --> 00:22:46,670
+然后测量 比如模型准确性的差异 你可能会看到 好吧 我的模型准确性差得多 在句子中 领先偏差没有
+And then measure, like the difference in model accuracy, you might see, like, okay, my model accuracy is much, much worse on sentences where it, the lead bias doesn't.
+
+206
+00:22:47,960 --> 00:22:50,400
+你也可以想象在这样的地方使用触发器
+You could also imagine using triggers for something like this where you'd.
+
+207
+00:22:51,090 --> 00:22:57,690
+就像我之前说的你可以改变放置触发器的位置 你可以想象把它放在前面 或者放在中间 或者放在末尾
+Um, like I was saying before you can kind of change what position you put the trigger in, you can imagine putting it at the front or putting it in the middle, putting at the end.
+
+208
+00:22:58,670 --> 00:23:06,590
+我的猜测是 如果模型有高度的位置偏差 触发器在前面会非常有效 但是如果你把它放在文件的末尾
+And my guess would be that, for, if the model was high positional bias, the trigger would be really effective at the front, but then, if you put it at the end of this of the document.
+
+209
+00:23:07,130 --> 00:23:10,250
+它在UH的效果会更差 一个模型的活跃度
+It would be less effective at the UH, A degree of model acrity.
+
+210
+00:23:14,210 --> 00:23:18,290
+这个 我不是为了让它触发而问 也许我会 我已经那样了
+This, I'm not questioning to get it to triggers, maybe I'll, I've been that up.
+
+211
+00:23:20,840 --> 00:23:23,080
+今天早上 埃里克是你的选择
+This morning, eric is your take.
+
+212
+00:23:25,520 --> 00:23:30,880
+在这音乐 条件语言和小卡切换的所有东西中 我觉得你能看到一些发泄 但是
+To this music and the conditional language and all that Cass is switching, I think you can see some little outlet, but um.
+
+213
+00:23:32,740 --> 00:23:34,660
+这是一个问题
+Yeah, this is a question, um,
+
+214
+00:23:37,160 --> 00:23:45,320
+我们最近做了一些关于机器翻译的CON触发器的工作 我想这可能是条件语言中最相关的任务了 我可以把建模想象成
+We actually had some work recently on doing CON triggers for a machine translation, which I guess is probably the most relevant task here for a conditional language, modeling that I can think of as, um.
+
+215
+00:23:46,030 --> 00:23:47,710
+是的 这绝对是真的 就像
+Yeah, it's definitely true, like, uh,
+
+216
+00:23:48,490 --> 00:23:57,170
+如何玩条件任务的触发器不一定是正确的 也不一定是明显的 因为在我们的例子中 比如 你把这个奇怪的短语加到一个痛苦的句子后面 一个机器翻译
+It's not necessarily true, not necessarily obvious how to play triggers for conditional tasks, because in our case, like let's say, you append this weird phrase to the end of a sore sentence, a machine translation.
+
+217
+00:23:57,880 --> 00:24:05,240
+模型在目标端应该做什么 它应该去掉那个短语 它应该翻译它 或者其他什么 尤其是当它是无意义的 所以我认为
+What's the model supposed to do on the target side Is it supposed to like drop that phrase, it's supposed to translate it, or something, especially if it's nonsense. So I think.
+
+218
+00:24:05,680 --> 00:24:11,600
+是的 当你得到条件设置时你实际上添加了一些模型必须要做的事情 我认为它的目标变得有点棘手
+Yeah, when you get to the conditional setting and you're actually adding something that the model must like do something with, I think it gets a bit tricky of what the goal.
+
+219
+00:24:16,250 --> 00:24:17,970
+我可以把那篇论文的链接发过去
+I can send a link to that paper in the rocket check.
+
+220
+00:24:20,170 --> 00:24:20,290
+酷
+Cool.
+
+221
+00:24:26,170 --> 00:24:33,530
+我想我们还有几分钟或者其他问题我们想回答一次
+Um, guess we have a few minutes or at any other questions we want to take on the once.
+
+222
+00:24:34,800 --> 00:24:34,920
+哦
+Uh,
+
+223
+00:24:38,600 --> 00:24:39,200
+我不知道
+I don't know.
+
+224
+00:24:49,150 --> 00:24:50,350
+埃里克 我觉得这个很有趣
+Eric, I think this is an interesting one.
+
+225
+00:24:53,580 --> 00:25:00,500
+关于触发因素 我们应该如何区分或分类有偏见的事物 和有实际特征的事物 这确实是你们看过的东西
+Regarding triggers, how should we distinguish or categorize things that are biased versus things that are actual features This is indeed something that you looked at.
+
+226
+00:25:01,740 --> 00:25:07,140
+是啊 我是说 我想我们之前也讨论过 也就是 这两者之间的界限在哪里
+Yeah, so, um, I mean, I guess we were discussing as a bit before, as well, which is like, where is the line between.
+
+227
+00:25:07,950 --> 00:25:13,510
+不需要的东西 我想这有点像偏见是不需要的还是不对的 所以 如果
+Something that's a unwant, I guess it's kind of like whether the bias is unwanted or not right So uh, if.
+
+228
+00:25:14,310 --> 00:25:21,990
+实际上 在S和L-A中 就像 没有人 这个词实际上是数据集的一个有效特征 所以模型实际上并不知道不使用这个词更好
+In, indeed, in S, in L-A, like the word nobody is actually an effective feature for the dataset, so the model doesn't really know any better to actually not use that word.
+
+229
+00:25:22,930 --> 00:25:27,490
+所以我想 在这一点上 它几乎变成了人类的事情 就像 嗯
+And so I guess there's kind of a line between, it almost becomes a human thing at that point of, like, uh,
+
+230
+00:25:29,010 --> 00:25:36,050
+哪个例子 哪些特征我可以识别为偏见还是非偏见 在某种意义上 因为对模型来说 它们看起来都是一样的
+Which example, which features can I identify as Uh, bias versus not bias, in some sense, because to the model, they all kind of look the same.
+
+231
+00:25:36,790 --> 00:25:43,110
+嗯 这也有点像先决条件 有一些我们不喜欢的分配芯片 我们拥有的数据
+Um, and it kind of also like prerequisites, there's some kind of distribution chip that we don't like, the data that we have, so, um,
+
+232
+00:25:44,240 --> 00:25:50,400
+我们得到的数据有偏差 所以 没有人 这个词 我猜是无效的 或者某种不受欢迎的功能
+The data that we have has bias. So the word nobody is, uh, is, I guess ineffective, or some sort of undesirable feature.
+
+233
+00:25:50,910 --> 00:25:59,110
+我们说它不可取的原因是因为我们知道有一些其他的分布 我们实际上关心的是无偏差的数据 我们不希望模型做得不好
+Um, and the reason we say it's undesirable is because we know there's some other distribution that we actually care about of non biased data that We don't want the model to uh, do poorly on.
+
+234
+00:26:00,980 --> 00:26:03,020
+我不喜欢 你想做什么特别的实验之类的
+I don't. There's some specific experiment you had in mind or something.
+
+235
+00:26:07,830 --> 00:26:12,350
+但我想我的回答是 对于模型来说 很难区分什么是偏见 什么是有效的
+But I think my general answer would be like, it's really hard to distinguish between what's bias and what's effective, uh, for the model.
+
+236
+00:26:17,120 --> 00:26:21,280
+这可能是由于我们切换到接下来的话题 什么
+That's maybe thanks to switch to the the rest of the talk. What.
+
+237
+00:26:21,880 --> 00:26:26,120
+我想我们还会听到一些问题的结果
+I guess we will also do is maybe start hearing a result of the questions that.
+
+238
+00:26:26,660 --> 00:26:31,260
+要么我们觉得我们已经回答了 要么是针对前面的部分
+Either we felt we answered already, or maybe it was specific to an earlier section.
+
+239
+00:26:32,500 --> 00:26:38,780
+答案是 如果你有问题 如果你愿意 就把事情弄清楚 英语
+And the answer, if you've got the question about, if you will, uh, just do clear things out. English.
+
+240
+00:26:41,290 --> 00:26:44,570
+所以 我想 对我来说 就六个吧 所以
+Uh, so, I guess, yeah, in terms of me, just six, I guess. So the.
+
+241
+00:26:45,380 --> 00:26:54,380
+我们想的是 原来的计划是30分钟前先休息一下 然后再继续 现在休息30分钟后 我们的手工日程安排很好 我不确定我们想不想
+What we were thinking is, so the original plan was to yet take a break at thirty minutes ago, and then resume Now after thirty minute break, um, but we're good by hand schedule, I'm not sure if we want to.
+
+242
+00:26:54,880 --> 00:26:58,000
+要么闭嘴 要么继续告诉他 我不介意别人
+Stop it all or just keep telling him, um, I'm okay for people.
+
+243
+00:26:59,390 --> 00:26:59,510
+哦
+Uh,
+
+244
+00:27:00,460 --> 00:27:05,140
+是啊 我也不喜欢 我要给你看看墨西哥人
+Yeah, it's not with me as well. Um, so I need to show you Mexican.
+
+245
+00:27:08,790 --> 00:27:09,310
+我走了
+I'm going.
+
+246
+00:27:23,010 --> 00:27:24,330
+好吧 我们要忙吗
+All right, um, shall we busy.
+
+247
+00:27:26,090 --> 00:27:28,210
+你觉得你想带走的东西很好 好吗
+You think it's good you want to take away, okay, cool?
+
+248
+00:27:29,000 --> 00:27:34,720
+好的 那么 欢迎回来 那些决定在你做的时候离开的人
+All right, so, um, welcome back for people who decided to step out while you were doing, open your way, um,
+
+249
+00:27:35,610 --> 00:27:44,130
+我们将会 我们已经做了 在教程中 我们将会讨论一个新的解释类别它与我们目前所见过的有很大的不同
+We're gonna be, we've done, have the tutorial, we're gonna be talking about a new category of explanations that's quite different from the ones we have seen so far.
+
+250
+00:27:44,990 --> 00:27:49,670
+之后 我们会讲一点第五部分和第六部分的内容会更多
+After which, we're going to be talking about a little bit of section five and six are going to be a lot more.
+
+251
+00:27:50,300 --> 00:27:54,820
+一个更高的层次和更大的图景 你知道 你如何实现这些东西
+A higher level and bigger picture, you of, you know, how do you implement these things And.
+
+252
+00:27:55,340 --> 00:28:01,020
+什么是跨解释的 什么是开放的问题和评估
+What works across explanations and what are sort of open problems and evaluations I think that.
+
+253
+00:28:02,250 --> 00:28:03,410
+好吧 嗯
+Okay. So um.
+
+254
+00:28:04,870 --> 00:28:11,150
+我们今天一整天都在讨论的问题是 为什么我的模型做出了一个特定的预测
+The question that we've been dealing with the whole day today is, why did my model make a specific prediction?
+
+255
+00:28:12,860 --> 00:28:20,020
+本质上 在这节课中 我将专注于重新表述或者通过问一个不同的问题来回答这个问题
+And essentially, in this section, I'm going to be focusing on rephrasing this or answering this by asking a different question.
+
+256
+00:28:20,580 --> 00:28:29,820
+也就是哪个训练例子对这个预测负责 想想我们到目前为止都做了些什么
+Which is which training examples were responsible for this prediction. So just to sort of think about what we've been doing so far.
+
+257
+00:28:30,520 --> 00:28:35,520
+我们有一些模型可以产生一些预测Y 对于一些输入X
+We've had some models that's producing some prediction, Y, for some input, X,
+
+258
+00:28:36,810 --> 00:28:44,330
+到目前为止 我们一直在思考如何将预测归因于导入的某些东西 对吧 我们只是通过模型 看看输入
+And so far we've been sort of thinking about attributing the prediction to something in the import, right? So we're just going through the models, looking at the input.
+
+259
+00:28:45,260 --> 00:28:53,500
+当然 这是一种粗略的简化图 因为通常你也有
+Uh, this is, of course, a much sort of gross simplification of what the picture actually looks like, um, because usually you also have.
+
+260
+00:28:54,240 --> 00:29:03,400
+一些训练过程实际上产生了模型 这个训练过程依赖于很多东西 但最重要的是训练数据本身
+Some training process that's actually producing the model, and that training process depends on bunch of things, but most importantly on the training data itself.
+
+261
+00:29:04,800 --> 00:29:11,400
+所以问题是 这些怎么解释呢
+And so the question is, well, how does where does all of that sit in with explanation?
+
+262
+00:29:13,210 --> 00:29:21,170
+所以我们要看的是所谓的数据影响 这个词不是经常使用 但这是我们今天要用的
+And so what we're going to be looking at is something called data influence. This term is not consistently used, but that's what we are going to use today, um,
+
+263
+00:29:22,190 --> 00:29:26,950
+而不是试图解释 在X中使用的东西 我们要做什么
+Where instead of trying to explain, of using something in X, what we're going to be doing.
+
+264
+00:29:27,550 --> 00:29:34,750
+通过训练过程的角度 通过模型的角度来观察训练数据
+Is looking sort of at the training data through the training process perspective, through the model perspective.
+
+265
+00:29:35,500 --> 00:29:43,140
+通过观察特定的预测 对于输入边 把所有这些放在一起
+And through looking at the specific prediction, while for an input edge and seeing all of this together,
+
+266
+00:29:45,290 --> 00:29:51,010
+所以我认为最好是用这个来说明我们真正的意思 因为图片是
+So I think it's best to illustrate with what we actually mean by this, and since pictures are.
+
+267
+00:29:51,910 --> 00:29:58,430
+嗯 这一千字 我要用计算机视觉的例子 因为他们 我说 看
+Um, what thousand words, I'm gonna use computer vision examples for this section, just because they're. I said, look at.
+
+268
+00:29:59,050 --> 00:30:03,370
+假设你有一张这样的照片你有一只白色的狗在海滩上
+Um to suppose you have a picture like this where you have this white dog on a beach.
+
+269
+00:30:04,000 --> 00:30:11,680
+然后你把它发送到一个新的网络分类器 它告诉你它是一只狗 当然 你可以做基于显著性的事情 但这不是我们在这里要关注的
+And you send it to a new network classifier. It tells you that it's a dog, of course, you can do saleency based things, but that's not what we're going to be focusing in here.
+
+270
+00:30:12,440 --> 00:30:19,800
+我们要做的是看所有的训练数据 这只是训练数据的一个样本
+What we're going to be doing instead is going to be looking at all of the training data, and this is just a sample from the training data.
+
+271
+00:30:21,550 --> 00:30:26,510
+看看这个变化的过程 使用这些训练数据
+And look at, okay, you know, the changing process. Use this training data to.
+
+272
+00:30:27,280 --> 00:30:30,800
+生成一个新的网络来预测这个特定图像的狗
+Produce this new network that's predicting dog for this specific image.
+
+273
+00:30:31,900 --> 00:30:38,220
+在这些训练数据中 哪些实例是最有用的 还有
+Which instances in this training data were most, uh, were most useful And.
+
+274
+00:30:39,700 --> 00:30:46,980
+希望当模型在失败的过程中做了正确的事 正确的事 你会在海滩上找到另一只狗 白色的狗
+Hopefully, as the model is doing the right thing in the failing processes, the right one, you would find another dog, white dog at a beach.
+
+275
+00:30:47,570 --> 00:30:55,730
+作为最重要的 有最重要的 填充数据需要模型认为这个图像也是一个码头
+As the one that's most important, there was most important, the filling data to need the model to think that this image is also a dock.
+
+276
+00:30:58,670 --> 00:31:02,230
+这里有一个很好的用例 可能会在开始的时候简要提到
+So here's a good use case, which might briefly mention, on the beginning.
+
+277
+00:31:02,860 --> 00:31:11,780
+比如 为什么 假设你有一张棕熊的照片 你的模型预测到了一只北极熊
+Where, suppose, like, why? Why is this data influence even useful Suppose you have an image of these brown bears, and your model predicts a polar bear.
+
+278
+00:31:12,520 --> 00:31:17,680
+你可能会想 他们为什么要这么做也许你可以使用基于帆船的方法
+Um, you might be wondering, like, why do they do that And maybe you can use sailency based methods and.
+
+279
+00:31:18,130 --> 00:31:24,210
+一些版本的锚和对手的例子之类的 也许你会对为什么会这样有一些直觉
+And some version of anchors and adversary examples and things like that, and maybe you will get some intuition as to why that's happening.
+
+280
+00:31:24,870 --> 00:31:27,070
+但是数据的影响能做什么
+Um, but what data influence can do.
+
+281
+00:31:27,610 --> 00:31:32,890
+就是在交易数据中找到最近的例子来帮助你到达这里 对吧 所以
+Is find nearest examples in the trading data that help you get here, right? So.
+
+282
+00:31:33,510 --> 00:31:38,910
+这里有一些最有影响力的培训例子 我想最重要的是第一个
+Here are some of the most influential training examples, and and the most important one is the first one, I guess.
+
+283
+00:31:39,560 --> 00:31:44,560
+你会看到一个棕色的图像 这是一只看起来很相似的棕熊
+Where you will see that there is a brown image of a brown bear that looks pretty similar.
+
+284
+00:31:45,230 --> 00:31:47,910
+它被贴上了北极熊的标签
+Um, that has been labeled as a polar bear.
+
+285
+00:31:48,650 --> 00:31:56,410
+这是训练数据的一部分 对吧 嗯 你可以马上说 好吧 这是一个我可以修正的标签错误 也许它指向一个更大的
+And that's part of the training data, right? Um? And so you can immediately say, okay, hey, that's a labeling error that I can fix. Maybe it points to a bigger.
+
+286
+00:31:57,180 --> 00:32:05,260
+在我的数据集中 我应该观察到的问题 但至少它给出了一个非常精确的解释 为什么我们预测了这幅图像中的极化物
+Issue in my data set that I should be observing, but at least it gives a very precise explanation for why we predicted polarware for this image.
+
+287
+00:32:06,740 --> 00:32:06,860
+哦
+Uh,
+
+288
+00:32:07,640 --> 00:32:12,200
+让我们看一个NLP中的例子 这里有一个评论
+Let's look at an example in NLP. Here's one where there's a review.
+
+289
+00:32:12,960 --> 00:32:17,240
+一部有时很神的电影被预测为好评
+Uh, a sometimes deious film that has been predicted as a positive review.
+
+290
+00:32:17,980 --> 00:32:24,860
+这显然不是一个自愿的评论 除非你真的喜欢无聊的手机
+By a class of fire, and clearly this is not a volunteer review, unless of some reason, you really like tedious phones.
+
+291
+00:32:26,910 --> 00:32:31,110
+所以问题可能是 为什么我们预测这是一个积极的评价
+And so the question might be, well, why did we predict this to be a positive review?
+
+292
+00:32:32,150 --> 00:32:38,670
+如果你运行其中一个数据 影响技术 我们稍后会讨论哪一个特性
+If you run one of these data, influence techniques, and we'll talk about which one specificity a little later.
+
+293
+00:32:39,360 --> 00:32:45,240
+你会得到一个像这样的列表 所有这些评论都太容易轻信了
+You'll get a list that looks something like this. It has all of these reviews so credulous.
+
+294
+00:32:46,310 --> 00:32:51,190
+只是一个词的看法 但不管什么原因 都被贴上了积极的标签
+Just a single word of view, um, but for whatever reason, was labeled positive.
+
+295
+00:32:52,060 --> 00:32:58,220
+一般的电影都是正面的 最简单的叙述都是正面的
+Um, an admittedly middling film was really positive, A simplest narrative was state positive.
+
+296
+00:32:59,500 --> 00:33:07,580
+这些是对特定评论最有影响力的 所以在所有的积极评论中 你突然把范围缩小到一小部分
+And these are the most influential ones for a specific review, so out of all the positive reviews, you've suddenly narrowed down to a small set of them.
+
+297
+00:33:08,390 --> 00:33:16,110
+从更高层次的语义角度来看 这和你看到的例子有点相似
+Um, that, from a sort of higher level semantic point of view, seem a little similar to the instance that you're looking at.
+
+298
+00:33:16,830 --> 00:33:22,430
+如果你认为原始实例应该是负的 你可能会认为这些也应该是负的
+Uh, and if you think the original instance should be negative, you might want to think that these should be negative as well.
+
+299
+00:33:23,380 --> 00:33:30,060
+但它们是正的 所以这是另一种方式来解释为什么模型预测 嗯 那么大的需要是正的
+But they were positive, so this is a different way to explain why the model predicted, um, that big need to be positive.
+
+300
+00:33:31,920 --> 00:33:38,960
+所以 做这种解读有很多好处 比如无线拼写数据
+So there are a bunch of benefits of, uh, doing these kind of interpretations, uh, sort of wireless spelling data.
+
+301
+00:33:40,190 --> 00:33:47,150
+第一件事是 它现在告诉你模型在哪里获得了某种行为 这可能是极端的
+The first thing is that it's now telling you where the model picked up a certain behavior, and that can be extremely.
+
+302
+00:33:47,920 --> 00:33:50,320
+有用是因为现在你有了某种意义上的上帝
+Useful because now you have Providence of sorts.
+
+303
+00:33:51,030 --> 00:33:55,350
+这也更可行一些 所以你可以
+Um, this also ends up being a little bit more actionable, so you can.
+
+304
+00:33:56,260 --> 00:34:04,220
+本质上很好很合适的例子有一些不正确的标签 就像我们看到的 可能有偏见
+Essentially fine and fit examples that sort of have incorrect labels, like we saw, maybe there are biases.
+
+305
+00:34:05,220 --> 00:34:12,700
+性别或种族 你知道 你预测某件事会以某种方式发生 你可以在训练数据中找到导致你有那个的例子
+Gender or race that show up, you know, you're predicting something to be a certain way. You can find out instances in the training data that led you to have that.
+
+306
+00:34:13,180 --> 00:34:14,700
+我让模型有了这种偏见
+I led the model to have that bias.
+
+307
+00:34:15,540 --> 00:34:21,020
+但当然与此相关 如果它们可以是模型中的其他毁灭 人工制品和捷径
+Um, but of course related to that, if they can be other anundation, artifacts and shortcuts in the model.
+
+308
+00:34:21,580 --> 00:34:29,660
+也许你在考试的时候看到了一个这样的例子 但是在影响下 你也可以找到所有的例子和训练时间让你得到这个结果
+And maybe you see an instances of that at the test time, but with influence, you can also find all the instances and the training time that led you to that.
+
+309
+00:34:31,640 --> 00:34:32,200
+嗯
+So um.
+
+310
+00:34:34,270 --> 00:34:42,670
+我们要做的是我们要再看一遍这个问题 有很多例子可以解释这个预测
+What we're going to be doing is we are going to be looking at this question again, which many examples were responsible for this prediction.
+
+311
+00:34:43,540 --> 00:34:44,980
+试着
+And try to, uh,
+
+312
+00:34:46,860 --> 00:34:51,020
+更精确地描述它 这样我们就能推导出答案的方法
+Frame it even more precisely, so that we can derive a method for answering.
+
+313
+00:34:53,110 --> 00:34:59,670
+所以你提出这个问题的方式是说 这些人特别年轻 那些几年前就这么做的人
+And so the way you're going to pose the problem is to say this is people are especially young, and people who did that a couple of years ago.
+
+314
+00:35:00,230 --> 00:35:04,990
+哪个应该作为例子 哪个例子 像哪个 训练例子
+Which was supposed as example, as which examples, like which, training examples.
+
+315
+00:35:05,720 --> 00:35:13,280
+如果移除 会改变很多损失 因此 如果你阅读 删除一些例子 并重新训练模型
+If removed, would change the loss a lot. So if you read, remove a few examples and retrain the model.
+
+316
+00:35:14,010 --> 00:35:20,170
+从本质上讲 预测会改变多少 影响更大的预测 其他产量变化最大的预测
+How much would the prediction change, essentially, and the more influence ones, other ones where the production will change the most?
+
+317
+00:35:21,910 --> 00:35:29,590
+这是它的图解 我们的目标是测试预测 这是特定于测试点的
+So here's the illustration of what that looks like, again, sort of, the goal is for a test prediction. This is specific to a test point.
+
+318
+00:35:30,890 --> 00:35:32,570
+确定最具影响力的培训点
+Identify the most influential training points.
+
+319
+00:35:33,640 --> 00:35:37,920
+这里有一些术语 让大家更清楚一些
+Uh, here's a little bit of terminology, just to make things a little bit clear.
+
+320
+00:35:38,620 --> 00:35:46,100
+我们讨论的是一个测试点X和一个训练点z 我们想计算一些影响 对吧 一些
+We are talking about a test point X and a training point, Z. We want to compute some influence, right? Some.
+
+321
+00:35:46,900 --> 00:35:53,980
+在x和Z之间的影响函数 所以对于每个测试点和每个转折点 你会得到一个不同的值
+I uh, influence function between x and Z, so for every test point and every turning point, you'll get a different value.
+
+322
+00:35:54,810 --> 00:36:02,610
+这个值反映的是Z对模型的重要性 对x的预测 当然 所有这些都取决于模型
+And what this value captures is how important is Z for the model, prediction for x And of course all of this depends on the model.
+
+323
+00:36:05,460 --> 00:36:11,660
+你也可以稍微改变它的框架 你可以说 Z对生产有什么影响 X 嗯
+You can also frame it slightly differently. You can say, what is the influence of Z on the production? X, um,
+
+324
+00:36:12,710 --> 00:36:19,230
+这些方法的工作方式 尤其是影响方法的工作方式 是把它框定为两个步骤
+The way these methods worker, especially this influence method, works, is to sort of frame it as a two step process.
+
+325
+00:36:20,240 --> 00:36:24,240
+第一步是考虑去掉训练点 Z
+The first step is to think about removing the training point. Z,
+
+326
+00:36:25,550 --> 00:36:30,510
+如果你去掉训练点 重新训练 你就稍微改变了一些参数
+And if you remove the training points and retrain, you've some sort of changed the parameters a little bit.
+
+327
+00:36:31,280 --> 00:36:35,000
+你可以量化参数的变化
+Um, and so you sort of quantify what that change in parameters would be.
+
+328
+00:36:35,600 --> 00:36:44,000
+第二步 观察参数的变化看看这会对你所关心的输入的预测产生多大的影响
+And as a second step, you look at the change in parameters and see how much would that change your prediction on on the input that you care about?
+
+329
+00:36:45,220 --> 00:36:52,940
+我们会稍微说明一下这两个步骤 但这就是这两个步骤 你必须对它们进行近似因为它们可能非常昂贵
+So we'll illustrate these two steps a little bit, but these are sort of the two steps, and you have to approximate both of them because they can be pretty expensive.
+
+330
+00:36:54,790 --> 00:37:02,470
+这是最初的设置 你有一个新的网络 这三张图都给了它
+So here's what sort of the original setup looks like, you have a new network. It's given all three of these images, and.
+
+331
+00:37:03,050 --> 00:37:03,890
+但愿不止这些
+Hopefully a lot more than that.
+
+332
+00:37:04,500 --> 00:37:08,260
+你把损失减到最小 这就是损失
+Um, and you minimize some loss here, um, this is what losses.
+
+333
+00:37:09,500 --> 00:37:17,020
+它包含了所有这些训练数据点 然后你在收敛时计算一些 这就是你的参数
+That has all of these training data points, and you compute some tita hat that sort of at convergence, that's the parameters of your.
+
+334
+00:37:19,140 --> 00:37:21,940
+现在如果你想计算这个图像有多有用
+Now if you want to compute how useful this image is.
+
+335
+00:37:22,790 --> 00:37:28,630
+方法是将它从数据集中删除 嗯 这就是火车
+The way to do that is to remove it from your dataset. Um. And so that's the train.
+
+336
+00:37:29,630 --> 00:37:36,550
+因为你再次训练了分类器 当然 如果你用不同的训练来训练分类器 数据表明你会得到不同的剧院
+And since you trained the classifier again, and of course, if you trained the classifier with a different training, data said you would get a different theater.
+
+337
+00:37:37,250 --> 00:37:40,250
+这就是斯泰塔所拥有的 减去训练
+And so that's what the stetah had, minus the training is.
+
+338
+00:37:40,950 --> 00:37:46,670
+也就是再一次通过收敛 几乎是相同的损失 除了少了一个训练点
+Which is to again run through convergence, pretty much the same loss, except you have one less training point.
+
+339
+00:37:49,120 --> 00:37:53,160
+所以你得到了这两个参数 你得到热量 一顶帽子 你得到热量一个热的 减去海上火车
+Um, so you get these two parameters, you get heat, a hat and you get heat a hot, minus sea train.
+
+340
+00:37:53,860 --> 00:37:53,980
+嗯
+Um,
+
+341
+00:37:54,800 --> 00:37:57,680
+本质上 你取你的输入
+And essentially, you take your input.
+
+342
+00:37:58,510 --> 00:38:06,230
+在这个例子中 这只狗 你把它发送到原始模型 你得到一些置信度 你把它发送到新模型 你得到一个不同的置信度
+Image, in this case this dog, you send it to the original model, you get some confidence, you send it to the new model, you get a different confidence.
+
+343
+00:38:06,890 --> 00:38:15,250
+在实践中 你会看到损失的差异 不是信心的差异 但是 嗯 这是一个不同的点 嗯 这两者的区别是
+And in practice, you look at the loss difference, not not the confidence difference, but, um, that's a different point. Um. And the difference between these two, um,
+
+344
+00:38:16,040 --> 00:38:22,160
+这是我们在桌面上的数据中选取的Z轴的影响
+A sort of the influence of that Z train we picked on this desk data.
+
+345
+00:38:23,740 --> 00:38:30,620
+这就是我们看到的区别 原始门罗在这个测试点上的损失是多少 在这里
+So this is literally the difference we're looking at, what's the loss on this test point with the original Monroe, which is right here?
+
+346
+00:38:31,490 --> 00:38:40,010
+新模型在这个测试点上的损失是什么 它们的区别是Z列车对Z测试点的影响
+And what's the loss on this test point with the new model, the difference of them is how influential this Z train was on the Z test point.
+
+347
+00:38:42,690 --> 00:38:48,450
+当然 这些东西很难计算 你只有彼得·哈特计算 这种损失是容易的
+Of course, this stuff is very difficult to compute, you only have Peter Hat computing. This loss is easy.
+
+348
+00:38:49,340 --> 00:38:57,820
+计算这个损失是非常困难的因为你必须移除火车并重新训练它 所以这里有很多有趣的近似
+Computing this loss is really difficult because you have to remove the train and retrain it, and so there are a bunch of interesting approximations that come in here.
+
+349
+00:38:58,460 --> 00:39:06,580
+为了在不重新训练模型的情况下计算这一项 因为这对于一个大的数据集是不可能的
+In order to um compute this term without actually retraining the model, because that would be impossible for a large data set.
+
+350
+00:39:08,520 --> 00:39:13,240
+这个影响函数很好 有很多原因 呃
+Okay, so this influence function is quite nice for many reasons. It's uh.
+
+351
+00:39:13,770 --> 00:39:21,450
+这是一种非常重要的方法 尤其是在某些情况下 它可以给你非常准确的影响
+It's a very principal approach, especially in, in some settings, it can be, uh, it can give you very, very accurate influences.
+
+352
+00:39:22,700 --> 00:39:30,860
+所以即使它是一个近似 它会 它会比重新连接瓶子快得多 它做出的近似实际上是非常有用的
+So even though it's an approximation, it's going to, it's going to be much faster than rejoining the bottle, the approximation that it makes is actually incredibly useful.
+
+353
+00:39:31,650 --> 00:39:32,650
+准确 嗯
+And accurate. Um,
+
+354
+00:39:34,550 --> 00:39:40,150
+从本质上讲 它不仅仅是一个理论 它也适用于很多模型 你可以做很多事情
+And emberically speaking, is not just a theory behind it, it also works for many models. You can do lots kind of.
+
+355
+00:39:41,160 --> 00:39:45,840
+所有的标签 错误检测和类似的东西通过使用这些影响函数
+All kinds of label, error detecting and things like that By using these influence functions.
+
+356
+00:39:47,430 --> 00:39:53,070
+不幸的是 有一些问题 嗯 最大的一个是 它的扩展性有点差
+Unfortunately, there are some problems, um, the biggest one is that it scales kind of poorly.
+
+357
+00:39:54,100 --> 00:40:01,740
+由于模型和训练数据的大小 所以模型越大 你拥有的训练数据越多 问题就越严重
+With the size of the model and the training data, so the bigger the model is, the the more train data you have, the more problematic it can be.
+
+358
+00:40:03,430 --> 00:40:07,350
+这也是理论和假设
+Um, it also the the theory and assumptions that the.
+
+359
+00:40:08,400 --> 00:40:11,720
+这个方法只在某些情况下有效
+The method makes sort of only works in certain settings.
+
+360
+00:40:12,430 --> 00:40:18,350
+从经验上讲 最近的一些研究表明 当你违反这些假设时
+And empirically, there's been some recent work that shows that when you violate those assumptions,
+
+361
+00:40:19,160 --> 00:40:25,560
+有些方法仍然可行 近似仍然有效 但当你违反这些假设时 影响函数就会受到影响
+Some methods are still okay and approximations still work, but influence function really suffers when you violate those assumptions.
+
+362
+00:40:26,060 --> 00:40:33,900
+有时会给你带来非常不好的影响 即使是随机做一些事对别人也有好处
+And sometimes can give you very sort of, uh, really bad, uh, influences, even doing something random can be better for someone else.
+
+363
+00:40:35,820 --> 00:40:36,580
+所以
+And so.
+
+364
+00:40:37,710 --> 00:40:44,270
+作为数据影响的替代 这是最近的一项研究 对位演示 点选择
+As an alternative matter to data influence. Uh, there's this more recent work, counter presenter, point selection that um.
+
+365
+00:40:45,720 --> 00:40:53,760
+有不同的假设 可能更合理一些 但它们主要针对可伸缩性问题
+Has different kinds of assumptions that maybe are a little bit more reasonable, and but they mostly target the scalability issue.
+
+366
+00:40:54,280 --> 00:40:55,120
+它的功能
+In in for its functions.
+
+367
+00:40:56,970 --> 00:41:02,530
+因此 代表点选择是一种更有效的数据影响公式 但这只是
+So the representer point selection is a much more efficient formulation of data influence. Uh, but it's only.
+
+368
+00:41:03,610 --> 00:41:10,770
+它被定义为一个特定的模型家族 本质上 模型与年长的组织有关 在最后一层
+It's defined for a specific family of models, essentially, models strained with elder organization. On the last layer.
+
+369
+00:41:11,360 --> 00:41:20,520
+最后一层应该是线性层 我认为在实践中经常会出现这种情况 所以如果你有一个原始实例 它需要通过一些特征提取器来获得一些特征
+And the last layer should be a linear layer, which I think in practice is often the case, so if you have a original instance, that's going through some feature extractor to get some features.
+
+370
+00:41:21,160 --> 00:41:28,680
+然后你在上面有一个线性层 当你输出的时候 所有这些东西都可以工作
+And then you have a linear layer on top of that, um, as you're output, then all of this, the stuff works.
+
+371
+00:41:30,660 --> 00:41:33,660
+他们所做的就是他们意识到如果这是公式
+And what they essentially do is they realize that if this is the formulation.
+
+372
+00:41:34,500 --> 00:41:41,660
+你可以计算模型的输出 或者至少用这种UM方程来近似它
+You can compute the output of the model, or at least approximate it quite well with this sort of UM equation.
+
+373
+00:41:42,410 --> 00:41:48,010
+这是模型的输出 在这里和提交会覆盖训练数据中的所有内容
+Where this is the output of the model, where and the submission goes over everything in the training data.
+
+374
+00:41:48,730 --> 00:41:55,850
+它就像一个最近邻分类器 从某种意义上说 你正在浏览训练数据的所有特性
+So you take, it's almost like a nearest neighbor classifier. In some sense, you're looking through all of the features of the training data.
+
+375
+00:41:56,440 --> 00:42:04,560
+每个10个数据点在某种意义上都有一个权重 嗯 你做一个暗乘积在两个特征导演之间得到一些数字
+And each ten data point gets a weight in some sense, um, and you do a dark product between the two feature directors to get some some number here.
+
+376
+00:42:06,130 --> 00:42:09,410
+本质上 这整个项 有时是a
+And essentially, this whole term, um, an alpha, sometimes.
+
+377
+00:42:10,210 --> 00:42:15,810
+可以视为训练的重要性 站起来点 对吗 所以如果这一项对一些
+Can be treated as the importance of the training, get up point, right? So if if this term is high for a few.
+
+378
+00:42:16,640 --> 00:42:20,680
+转折点 这意味着它对你的预测有更大的影响 否则就不会
+Turning points, that means it has a bigger impact on your prediction. Otherwise it does not.
+
+379
+00:42:22,800 --> 00:42:28,560
+这对计算机来说是非常有效的 就像计算一样 非常简单
+So what is really nice about this is it's extremely efficient to computer, right, like alpha computing, alpha is pretty easy.
+
+380
+00:42:29,890 --> 00:42:36,450
+训练数据的特征和测试数据的特征 这就是你需要计算的 差不多就是这样
+Features of training data and features of test data, that's all you need to compute. And that's pretty much it.
+
+381
+00:42:38,350 --> 00:42:46,470
+同样 这项工作在NLP中还没有被广泛使用 但我想指出这个 这个潜在的 UM 研究方向
+Again, this work hasn't been used as much in in NLP, but I just wanted to point to this, this potential, UM, direction of research.
+
+382
+00:42:48,230 --> 00:42:55,550
+这里有一些例子 嗯 我们讨论这个例子 有时是乏味的电影 以及这个东西
+So here are some examples of what this might look like. Um, we talk about this example of uh, sometimes tedious film, and how this thing.
+
+383
+00:42:56,240 --> 00:42:58,640
+是一种直觉的体现
+Was sculpturing a bunch of intuition behind Um.
+
+384
+00:42:59,740 --> 00:43:06,900
+我们也可以将此强加到Sailency地图上 以及它会产生什么
+Behind sentiments and sort of what's positive, what's negative We can also compel this to the Sailency map, and what that would produce.
+
+385
+00:43:07,630 --> 00:43:15,430
+你可以看到这里 储蓄地图其实还不错 对吧 它表示这是正的 这是正的
+And you can see here, um, the savings map is actually not too bad, right? It's saying this is slightly positive, this is slightly positive.
+
+386
+00:43:16,840 --> 00:43:19,280
+乏味是非常负面的
+Tedious is the one that's really, really negative.
+
+387
+00:43:20,680 --> 00:43:23,000
+这就解释了
+And and that sort of explains it like, okay,
+
+388
+00:43:23,900 --> 00:43:33,140
+至少这个模型知道单调是不好的 其他的东西都是正面的 这个影响函数给了你对整个事情的另一种看法
+At least the model knows that tedious is bad, the other things are slightly positive, um, and this influence function is giving you an alternative view of this whole thing.
+
+389
+00:43:34,330 --> 00:43:42,810
+这是情感分析 selegy地图给出了合理的解释 但你也可以看看那些不是这样的任务
+This is sentiment analysis, where selegy maps sort of give reasonable explanations, but you can also look at tasks where that is not the case.
+
+390
+00:43:44,150 --> 00:43:51,590
+举个例子 我们有Nelly 给你一个前提和假设 这是来自手部数据集
+So for example, uh, we have Nelly where you're given a premise and a hypothesis, and so this is from the hands data set.
+
+391
+00:43:52,190 --> 00:44:00,590
+在办公场所 经理受到了秘书的鼓励 假设秘书鼓励了经理 结果产出进了监狱
+Where the premises, the manager was encouraged by the secretary. The hypothesis is the secretary encouraged the manager, and the output is in jail.
+
+392
+00:44:01,360 --> 00:44:07,840
+但如果你想知道为什么模特会有这样的问题 你可以从销售入手
+Uh, but if you want to know why the models did entailment for this, you can start looking at sales.
